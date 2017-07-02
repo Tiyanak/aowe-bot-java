@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_aowebot" default="compile.module.aowebot">
+  <dirname property="module.aowebot.basedir" file="${ant.file.module_aowebot}"/>
+  
+  <property name="module.jdk.home.aowebot" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.aowebot" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.aowebot" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.aowebot" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="aowebot.output.dir" value="${module.aowebot.basedir}/out/production/aoweBot"/>
+  <property name="aowebot.testoutput.dir" value="${module.aowebot.basedir}/out/test/aoweBot"/>
+  
+  <path id="aowebot.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="aowebot.module.production.classpath">
+    <path refid="${module.jdk.classpath.aowebot}"/>
+    <pathelement location="${basedir}/lib/opencv-320.jar"/>
+    <pathelement location="${basedir}/lib/jnativehook-2.1.0.jar"/>
+  </path>
+  
+  <path id="aowebot.runtime.production.module.classpath">
+    <pathelement location="${aowebot.output.dir}"/>
+    <pathelement location="${basedir}/lib/opencv-320.jar"/>
+    <pathelement location="${basedir}/lib/jnativehook-2.1.0.jar"/>
+  </path>
+  
+  <path id="aowebot.module.classpath">
+    <path refid="${module.jdk.classpath.aowebot}"/>
+    <pathelement location="${aowebot.output.dir}"/>
+    <pathelement location="${basedir}/lib/opencv-320.jar"/>
+    <pathelement location="${basedir}/lib/jnativehook-2.1.0.jar"/>
+  </path>
+  
+  <path id="aowebot.runtime.module.classpath">
+    <pathelement location="${aowebot.testoutput.dir}"/>
+    <pathelement location="${aowebot.output.dir}"/>
+    <pathelement location="${basedir}/lib/opencv-320.jar"/>
+    <pathelement location="${basedir}/lib/jnativehook-2.1.0.jar"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.aowebot">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.aowebot">
+    <patternset refid="excluded.from.module.aowebot"/>
+  </patternset>
+  
+  <path id="aowebot.module.sourcepath">
+    <dirset dir="${module.aowebot.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.aowebot" depends="compile.module.aowebot.production,compile.module.aowebot.tests" description="Compile module aoweBot"/>
+  
+  <target name="compile.module.aowebot.production" depends="register.custom.compilers" description="Compile module aoweBot; production classes">
+    <mkdir dir="${aowebot.output.dir}"/>
+    <javac2 destdir="${aowebot.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.aowebot}/javac">
+      <compilerarg line="${compiler.args.aowebot}"/>
+      <bootclasspath refid="aowebot.module.bootclasspath"/>
+      <classpath refid="aowebot.module.production.classpath"/>
+      <src refid="aowebot.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.aowebot"/>
+    </javac2>
+    
+    <copy todir="${aowebot.output.dir}">
+      <fileset dir="${module.aowebot.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.aowebot.tests" depends="register.custom.compilers,compile.module.aowebot.production" description="compile module aoweBot; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.aowebot" description="cleanup module">
+    <delete dir="${aowebot.output.dir}"/>
+    <delete dir="${aowebot.testoutput.dir}"/>
+  </target>
+</project>

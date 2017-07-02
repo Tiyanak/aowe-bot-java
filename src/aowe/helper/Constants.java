@@ -18,7 +18,7 @@ public class Constants {
 
     public static final List<String> HYDRA_TEMPLATES = Arrays.asList("hydra_battle", "hydra_boss", "hydra_empty", "hydra_fight",
             "hydra_lost", "hydra_me", "hydra_x", "hydra_block", "hydra_lost", "hydra_replay", "hydra_forward", "hydra_forward_shade",
-            "aowe_hero_tavern", "hydra_battle_report", "hydra_buff", "hydra_heart");
+            "aowe_hero_tavern", "hydra_battle_report", "hydra_buff", "hydra_heart", "hydra_empty_troop");
     public static final String HYDRA_ME = "hydra_me";
     public static final String HYDRA_BUFF = "hydra_buff";
     public static final String HYDRA_BATTLE = "hydra_battle";
@@ -32,6 +32,7 @@ public class Constants {
     public static final String HYDRA_BATTLE_REPORT = "hydra_battle_report";
     public static final String HYDRA_EMPTY = "hydra_empty";
     public static final String HYDRA_HEART = "hydra_heart";
+    public static final String HYDRA_EMPTY_TROOP = "hydra_empty_troop";
 
     public static final String AOWE_HERO_TAVERN = "aowe_hero_tavern";
 

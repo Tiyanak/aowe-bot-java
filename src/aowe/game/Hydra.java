@@ -8,6 +8,7 @@ import aowe.model.Battle;
 import org.opencv.core.Mat;
 import org.opencv.imgcodecs.Imgcodecs;
 
+import javax.swing.*;
 import java.util.*;
 
 /**
@@ -21,39 +22,44 @@ public class Hydra implements Game{
     private KeyPresser keyPresser;
     private boolean isPlaying;
     private boolean shouldPlay;
+    private boolean untilDead;
+    private JTextArea logArea;
 
     public Hydra() {
         this.keyPresser = new KeyPresser();
         initTemplates();
-        levels = 999;
+        levels = 999*10;
         this.isPlaying = false;
         this.shouldPlay = true;
+        this.untilDead = false;
     }
 
-    public Hydra(int levels) {
+    public Hydra(int levels, JTextArea logArea) {
         this.keyPresser = new KeyPresser();
-        initTemplates();
+        this.logArea = logArea;
         this.levels = levels*10;
         this.isPlaying = false;
         this.shouldPlay = true;
+        this.untilDead = false;
+        initTemplates();
+        logArea.setVisible(true);
     }
 
 
     public void initTemplates() {
         this.templates = new HashMap<>();
 
-        System.out.println("STARTING INITIALIZING TEMPLATES");
+        logArea.setText(logArea.getText() + "STARTING INITIALIZING TEMPLATES");
         for (String hydra_temp : Constants.HYDRA_TEMPLATES) {
             String path = Constants.AOWE_ASSETS + hydra_temp + Constants.PNG_EXT;
             try {
                 this.templates.put(hydra_temp, Imgcodecs.imread(path));
             } catch (Exception e) {
-                System.out.println("CANT FIND THE TEMPLATE PATH");
+                logArea.append("CANT FIND THE TEMPLATE PATH");
             }
         }
 
-        System.out.println("FINISHED INITIALIZING TEMPLATES");
-
+        logArea.append("FINISHED INITIALIZING TEMPLATES");
     }
 
     public void play() {
@@ -73,29 +79,30 @@ public class Hydra implements Game{
 
             List<Battle> aowe_hero_tavern = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.AOWE_HERO_TAVERN), true, false, false, Constants.MATCHING_PRECISION);
             if (aowe_hero_tavern.size() > 0){
-                System.out.println("HYDRA FINISHED!");
+                logArea.append("HYDRA FINISHED!");
                 this.isPlaying = false;
                 System.exit(0);
             }
 
-            List<Battle> hydra_hearts = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.HYDRA_HEART), false, false, false, Constants.MATCHING_HEARTS);
-            hydra_hearts.removeAll(findSameBattles(hydra_hearts));
-            if (hydra_hearts.size() > 0){
-                System.out.println(hydra_hearts.size());
-                System.out.println("ALMOST DEAD! 1 <3 LEFT SO EXITING FOR SECURITY REASONS");
-                System.exit(0);
+            if (!this.untilDead) {
+                List<Battle> hydra_hearts = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.HYDRA_HEART), false, false, false, Constants.MATCHING_HEARTS);
+                hydra_hearts.removeAll(findSameBattles(hydra_hearts));
+                if (hydra_hearts.size() == 1) {
+                    logArea.append("ALMOST DEAD! 1 <3 LEFT SO EXITING FOR SECURITY REASONS");
+                    System.exit(0);
+                }
             }
 
             List<Battle> blocked = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.HYDRA_X), true, false, false, Constants.BLOCKED_PRECISION);
             List<Battle> battleMovie = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.HYDRA_FORWARD_SHADE), true, false, false, Constants.BLOCKED_PRECISION);
 
             if (blocked.size() > 0) {
-                System.out.println("ILEGAL WINDOW -> CLOSING IT");
+                logArea.append("ILEGAL WINDOW -> CLOSING IT");
                 Battle x = blocked.get(0);
                 keyPresser.click(x.getX(), x.getY());
                 continue;
             }else if(battleMovie.size() > 0){
-                System.out.println("SKIPING BATTLE MOVIE -> CLOSING IT");
+                logArea.append("SKIPING BATTLE MOVIE -> CLOSING IT");
                 Battle bm = battleMovie.get(0);
                 keyPresser.click(bm.getX(), bm.getY());
                 continue;
@@ -103,13 +110,13 @@ public class Hydra implements Game{
 
             List<Battle> me = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.HYDRA_ME), true, false, true, Constants.MATCHING_PRECISION);
             if (me.isEmpty()) {
-                System.out.println("NO ME IN GAME -> RETRYING");
+                logArea.append("NO ME IN GAME -> RETRYING");
                 continue;
             }
 
             List<Battle> battles = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.HYDRA_BATTLE), false, false, false, Constants.MATCHING_PRECISION);
             if (battles.isEmpty()) {
-                System.out.println("NO BATTLES IN GAME -> RETRYING");
+                logArea.append("NO BATTLES IN GAME -> RETRYING");
                 continue;
             } else {
                 battles.removeAll(findSameBattles(battles));
@@ -204,7 +211,7 @@ public class Hydra implements Game{
 
     public void fight(Battle battle) {
 
-        System.out.println("FIGHTING -> " + battle.toString());
+        logArea.append("FIGHTING -> " + battle.toString());
 
         keyPresser.click(battle.getX(), battle.getY());
 
@@ -243,14 +250,14 @@ public class Hydra implements Game{
 
     @Override
     public void stop() {
-        System.out.println("PAUSING HYDRA");
+        logArea.append("PAUSING HYDRA");
         this.shouldPlay = false;
     }
 
     @Override
     public void start() {
-        System.out.println("STARTING HYDRA AGAIN");
-       this.shouldPlay = true;
+        logArea.append("STARTING HYDRA AGAIN");
+        this.shouldPlay = true;
     }
 
     @Override
@@ -349,4 +356,11 @@ public class Hydra implements Game{
 
     }
 
+    public boolean isUntilDead() {
+        return untilDead;
+    }
+
+    public void setUntilDead(boolean untilDead) {
+        this.untilDead = untilDead;
+    }
 }
