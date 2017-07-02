@@ -3,6 +3,7 @@ package aowe.helper;
 import aowe.model.Battle;
 import aowe.model.Sight;
 import org.opencv.core.*;
+import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
 
 import java.util.ArrayList;

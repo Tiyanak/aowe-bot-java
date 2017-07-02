@@ -34,6 +34,18 @@ public class Battle {
         return Math.abs(y - b.getY()) < 20;
     }
 
+    public boolean neighborWith(Battle b){
+
+        int distance = Math.abs(this.x - b.getX()) + Math.abs(this.y - b.getY());
+
+        if (distance < 160 && distance > 100){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

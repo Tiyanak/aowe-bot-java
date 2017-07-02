@@ -3,6 +3,7 @@ package aowe;
 import aowe.game.FirstSight;
 import aowe.game.Hydra;
 import aowe.helper.GlobalKeyListener;
+import jdk.nashorn.internal.objects.Global;
 import org.jnativehook.GlobalScreen;
 import org.jnativehook.NativeHookException;
 import org.opencv.core.Core;
@@ -44,20 +45,37 @@ public class Main {
 
         while(true){
             System.out.println("INFO: 1 - continue playing, 2 - pause playing, 3 - quit game");
-            System.out.print("Input (h=hydra, s=firstSight) : ");
-            command = sc.next();
+            System.out.print("Input (h=hydra, h number=hydra with defined levels, s=firstSight) : ");
+            command = sc.nextLine();
 
             gkl = new GlobalKeyListener();
 
-            switch (command) {
-                case "h" : startHydra(); break;
-                case "s" : startFirstSight(); break;
-                case "q" : quit(); break;
-                default : continue;
+            if (command.equalsIgnoreCase("h")) {
+                startHydra();
+                break;
+            }else if (command.matches("^h [0-9]+$")) {
+                String numbers = command.trim().replaceAll("[^0-9]+", "");
+                startHydra(Integer.valueOf(numbers));
+                break;
+            }
+            else if(command.equalsIgnoreCase("s")) {
+                startFirstSight();
+                break;
+            }else if (command.equalsIgnoreCase("q")) {
+                quit();
+            }else{
+                continue;
             }
 
         }
 
+    }
+
+    private static void startHydra(int levels){
+        Hydra hydra = new Hydra(levels);
+        gkl.addGame(hydra);
+        GlobalScreen.addNativeKeyListener(gkl);
+        hydra.play();
     }
 
     private static void startHydra(){

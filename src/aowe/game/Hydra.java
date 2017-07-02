@@ -8,18 +8,16 @@ import aowe.model.Battle;
 import org.opencv.core.Mat;
 import org.opencv.imgcodecs.Imgcodecs;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Igor Farszky on 1.7.2017..
  */
+@SuppressWarnings(value = "all")
 public class Hydra implements Game{
 
     private Map<String, Mat> templates;
-    private int lives;
+    private int levels;
     private KeyPresser keyPresser;
     private boolean isPlaying;
     private boolean shouldPlay;
@@ -27,10 +25,19 @@ public class Hydra implements Game{
     public Hydra() {
         this.keyPresser = new KeyPresser();
         initTemplates();
-        lives = 5;
+        levels = 999;
         this.isPlaying = false;
         this.shouldPlay = true;
     }
+
+    public Hydra(int levels) {
+        this.keyPresser = new KeyPresser();
+        initTemplates();
+        this.levels = levels*10;
+        this.isPlaying = false;
+        this.shouldPlay = true;
+    }
+
 
     public void initTemplates() {
         this.templates = new HashMap<>();
@@ -53,7 +60,7 @@ public class Hydra implements Game{
 
         this.isPlaying = true;
 
-        while (this.lives > 2) {
+        while (this.levels > 0) {
 
             if (!shouldPlay){
                 sleep(1000);
@@ -68,6 +75,14 @@ public class Hydra implements Game{
             if (aowe_hero_tavern.size() > 0){
                 System.out.println("HYDRA FINISHED!");
                 this.isPlaying = false;
+                System.exit(0);
+            }
+
+            List<Battle> hydra_hearts = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.HYDRA_HEART), false, false, false, Constants.MATCHING_HEARTS);
+            hydra_hearts.removeAll(findSameBattles(hydra_hearts));
+            if (hydra_hearts.size() > 0){
+                System.out.println(hydra_hearts.size());
+                System.out.println("ALMOST DEAD! 1 <3 LEFT SO EXITING FOR SECURITY REASONS");
                 System.exit(0);
             }
 
@@ -101,14 +116,37 @@ public class Hydra implements Game{
             }
 
             List<Battle> bossesTemp = CV.matchingHydraTemplates(screenFrame, templates.get(Constants.HYDRA_BOSS), true, false, false, Constants.MATCHING_PRECISION);
+            this.levels--;
 
             if (bossesTemp.size() > 0) {
-                this.bossFight(battles, bossesTemp.get(0), me.get(0));
+                List<Battle> searchBoss = CV.matchingHydraTemplates(screenFrame, templates.get(Constants.HYDRA_EMPTY), false, true, false, Constants.MATCHING_EMPTY);
+                searchBoss.removeAll(findSameBattles(searchBoss));
+                searchBoss.add(me.get(0));
+                searchBoss.add(bossesTemp.get(0));
+                this.bossFight(searchBoss, me.get(0), bossesTemp.get(0), battles);
             } else if (battles.size() > 0) {
                 Battle closestBattle = this.findClosestBattle(battles, me.get(0));
                 this.fight(closestBattle);
             } else {
                 continue;
+            }
+
+        }
+
+    }
+
+    private void bossFight(List<Battle> searchBoss, Battle me, Battle boss, List<Battle> battles) {
+
+        while (true){
+
+            if (battleSearchAStar(me, boss, searchBoss)){
+                this.fight(boss);
+                break;
+            }else{
+                searchBoss.remove(boss);
+                boss = findClosestBattle(battles, boss);
+                battles.remove(boss);
+                searchBoss.add(boss);
             }
 
         }
@@ -171,74 +209,12 @@ public class Hydra implements Game{
         keyPresser.click(battle.getX(), battle.getY());
 
         pressButton(Constants.HYDRA_FIGHT, false);
+        sleep(500);
         pressButton(Constants.HYDRA_FORWARD, true);
         sleep(500);
         pressButton(Constants.HYDRA_FORWARD_SHADE, true);
+        sleep(200);
 
-    }
-
-    public void doBossFight(Battle battle){
-
-        System.out.println("FIGHTING BOSS -> " + battle.toString());
-
-        keyPresser.click(battle.getX(), battle.getY());
-        sleep(2000);
-
-        Mat screenFrame = ScreenHelper.GetCurrentScreenImage();
-        List<Battle> isFight = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.HYDRA_FIGHT), true, false, false, Constants.MATCHING_PRECISION);
-
-        if (isFight.size() == 0){
-            List<Battle> pressBuff = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.HYDRA_BUFF), true, false, false, Constants.MATCHING_PRECISION);
-            if (pressBuff.size() > 0){
-                keyPresser.click(pressBuff.get(0).getX(), pressBuff.get(0).getY());
-            }
-            return;
-        }
-
-        pressButton(Constants.HYDRA_FIGHT, false);
-        pressButton(Constants.HYDRA_FORWARD, true);
-        sleep(500);
-        pressButton(Constants.HYDRA_FORWARD_SHADE, true);
-
-    }
-
-    public void bossFight(List<Battle> battles, Battle boss, Battle me) {
-
-        doBossFight(boss);
-        sleep(100);
-
-        Mat screenFrame = ScreenHelper.GetCurrentScreenImage();
-        List<Battle> blocked = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.HYDRA_X), true, false, false, Constants.BLOCKED_PRECISION);
-
-        if (blocked.size() == 0) {
-            return;
-        } else {
-            System.out.println("BOSS BLOCKED");
-            Battle x = blocked.get(0);
-            keyPresser.click(x.getX(), x.getY());
-        }
-
-        while (battles.size() > 0) {
-
-            Battle bestBattleCandidate = this.findClosestBattle(battles, boss);
-
-            doBossFight(bestBattleCandidate);
-            sleep(200);
-
-            screenFrame = ScreenHelper.GetCurrentScreenImage();
-            blocked = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.HYDRA_X), true, false, false, Constants.BLOCKED_PRECISION);
-
-            if (blocked.size() == 0) {
-                return;
-            } else {
-                System.out.println("CANDIDATE BLOCKED");
-                Battle x = blocked.get(0);
-                keyPresser.click(x.getX(), x.getY());
-                battles.remove(bestBattleCandidate);
-                continue;
-            }
-
-        }
     }
 
     public void pressButton(String templateToClick, boolean searchOnce) {
@@ -287,5 +263,90 @@ public class Hydra implements Game{
         this.isPlaying = isPlaying;
     }
 
+    public boolean battleSearchAStar(Battle start, Battle goal, List<Battle> searchBattles){
+
+        List<Battle> closedSet = new ArrayList<>();
+        List<Battle> openSet = new ArrayList<>();
+        Map<Battle, Integer> gScore = new HashMap<>();
+        Map<Battle, Integer> fScore = new HashMap<>();
+
+        openSet.add(start);
+        gScore.put(start, 0);
+        fScore.put(start, cityBlockDistance(start, goal));
+
+        while (!openSet.isEmpty()){
+
+            Battle current = getLowestScore(openSet, fScore);
+
+            if (current.similiar(goal)){
+                return true;
+            }
+
+            openSet.remove(current);
+            if (!closedSet.contains(current)) {
+                closedSet.add(current);
+            }
+
+            for (Battle neighbour : getNeightbours(current, searchBattles)){
+
+                if (closedSet.contains(neighbour)){
+                    continue;
+                }
+
+                if (!openSet.contains(neighbour)){
+                    openSet.add(neighbour);
+                }
+
+                int distanceStartNeighbor = gScore.get(current) + cityBlockDistance(current, neighbour);
+
+                if (gScore.containsKey(neighbour) && distanceStartNeighbor >= gScore.get(neighbour)){
+                    continue;
+                }
+
+                gScore.put(neighbour, distanceStartNeighbor);
+                fScore.put(neighbour, cityBlockDistance(neighbour, goal));
+
+            }
+
+        }
+
+        return false;
+
+    }
+
+    private List<Battle> getNeightbours(Battle current, List<Battle> searchbattles) {
+
+        List<Battle> neighbors = new ArrayList<>();
+
+        for (Battle b : searchbattles){
+            if (current.neighborWith(b)){
+                neighbors.add(b);
+            }
+        }
+
+        return neighbors;
+
+    }
+
+    public Battle getLowestScore(List<Battle> nodes, Map<Battle, Integer> scores){
+
+        Battle lowestScoreBattle = new Battle(0, 0);
+        Integer minScore = 9999;
+
+        for (Battle b : nodes){
+            if (!scores.containsKey(b)){
+                continue;
+            }
+
+            if (scores.get(b) < minScore){
+                lowestScoreBattle = b;
+                minScore = scores.get(b);
+            }
+
+        }
+
+        return lowestScoreBattle;
+
+    }
 
 }
