@@ -12,13 +12,14 @@ public class Constants {
     public static final Double MATCHING_ZERO = 0.0;
     public static final double BLOCKED_PRECISION = 0.7;
     public static final String PNG_EXT = ".PNG";
-    public static final String AOWE_ASSETS = "src/aowe_assets/";
+    public static final String AOWE_ASSETS = "C:\\Users\\Igor Farszky\\Desktop\\hydra\\";
     public static final double MATCHING_EMPTY = 0.65;
     public static final double MATCHING_HEARTS = 0.9;
 
     public static final List<String> HYDRA_TEMPLATES = Arrays.asList("hydra_battle", "hydra_boss", "hydra_empty", "hydra_fight",
             "hydra_lost", "hydra_me", "hydra_x", "hydra_block", "hydra_lost", "hydra_replay", "hydra_forward", "hydra_forward_shade",
             "aowe_hero_tavern", "hydra_battle_report", "hydra_buff", "hydra_heart", "hydra_empty_troop");
+
     public static final String HYDRA_ME = "hydra_me";
     public static final String HYDRA_BUFF = "hydra_buff";
     public static final String HYDRA_BATTLE = "hydra_battle";
@@ -39,4 +40,9 @@ public class Constants {
     public static final String SIGHT_HERO_HIGHLIGHT = "sight_hero_highlight";
     public static final String SIGHT_START = "sight_start";
     public static final String SIGHT_HERO_GUESS = "sight_hero_guess";
+
+    public static final String HYDRA_BACKGROUND = AOWE_ASSETS + "hydra_background" + PNG_EXT;
+    public static final String FIRST_SIGHT_BACKGROUND = AOWE_ASSETS + "first_sight_background" + PNG_EXT;
+    public static final String AOWE_BACKGROUND = AOWE_ASSETS + "aowe_background" + PNG_EXT;
+
 }

@@ -16,13 +16,11 @@ public class HydraAction extends AbstractAction {
 
     private JTextField levelsTf;
     private JCheckBox untilDeadCb;
-    private JTextArea logArea;
 
-    public HydraAction(String name, JTextField levelsTf, JCheckBox untilDeadCb, JTextArea logArea) {
+    public HydraAction(String name, JTextField levelsTf, JCheckBox untilDeadCb) {
         super(name);
         this.levelsTf = levelsTf;
         this.untilDeadCb = untilDeadCb;
-        this.logArea = logArea;
     }
 
     @Override
@@ -43,7 +41,7 @@ public class HydraAction extends AbstractAction {
 
         GlobalKeyListener gkl = new GlobalKeyListener();
 
-        Hydra hydra = new Hydra(Integer.valueOf(levelsTf.getText()), logArea);
+        Hydra hydra = new Hydra(Integer.valueOf(levelsTf.getText()));
         hydra.setUntilDead(untilDeadCb.isSelected());
         gkl.addGame(hydra);
         GlobalScreen.addNativeKeyListener(gkl);

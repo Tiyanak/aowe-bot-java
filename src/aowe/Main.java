@@ -2,28 +2,20 @@ package aowe;
 
 import aowe.actions.FirstSightAction;
 import aowe.actions.HydraAction;
-import aowe.game.FirstSight;
-import aowe.game.Hydra;
-import aowe.helper.GlobalKeyListener;
-import jdk.nashorn.internal.objects.Global;
-import org.jnativehook.GlobalScreen;
-import org.jnativehook.NativeHookException;
+import aowe.helper.Constants;
 import org.opencv.core.Core;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
-import java.util.Scanner;
-import java.util.logging.LogManager;
 
 
 /**
  * Created by Igor Farszky on 1.7.2017..
  */
 public class Main extends JFrame{
-
-//    private static GlobalKeyListener gkl;
 
     public Main(){
         initUI();
@@ -35,110 +27,109 @@ public class Main extends JFrame{
 
         SwingUtilities.invokeLater(() -> {
             Main ex = new Main();
-            ex.setVisible(true);
         });
-
-        Scanner sc = new Scanner(System.in);
-
-        System.out.println("AOWE AUTOPLAY BOT BY TIYANAK");
-
-        String command = "";
-
-//        try {
-//            GlobalScreen.registerNativeHook();
-//        }
-//        catch (NativeHookException ex) {
-//            System.err.println("There was a problem registering the native hook.");
-//            System.err.println(ex.getMessage());
-//
-//            System.exit(1);
-//        }
-//
-//        LogManager.getLogManager().reset();
-//        LogManager.getLogManager().getLogger(GlobalScreen.class.getPackage().getName());
-
-//        while(true){
-//            System.out.println("INFO: 1 - continue playing, 2 - pause playing, 3 - quit game");
-//            System.out.print("Input (h=hydra, h number=hydra with defined levels, s=firstSight) : ");
-//            command = sc.nextLine();
-//
-//            gkl = new GlobalKeyListener();
-//
-//            if (command.equalsIgnoreCase("h")) {
-//                startHydra(false);
-//                break;
-//            } else if (command.matches("^h [0-9]+$")) {
-//                String numbers = command.trim().replaceAll("[^0-9]+", "");
-//                startHydra(Integer.valueOf(numbers), false);
-//                break;
-//            }else if(command.contains("--ud")){
-//                command = command.replaceAll("--ud", "");
-//                if (command.matches("^h[ ]*$")) {
-//                    startHydra(true);
-//                    break;
-//                } else if (command.matches("^h[ ]*[0-9]+[^0-9]*$")) {
-//                    String numbers = command.trim().replaceAll("[^0-9]+", "");
-//                    startHydra(Integer.valueOf(numbers), true);
-//                    break;
-//                }
-//            } else if(command.equalsIgnoreCase("s")) {
-//                startFirstSight();
-//                break;
-//            }else if (command.equalsIgnoreCase("q")) {
-//                quit();
-//            }else{
-//                continue;
-//            }
-//
-//        }
 
     }
 
     private void initUI() {
 
+        Image hydra_back = null;
+        Image first_sight_back = null;
+        try {
+            hydra_back = ImageIO.read(new File(Constants.HYDRA_BACKGROUND)).getScaledInstance(110, 50,  java.awt.Image.SCALE_SMOOTH );
+            first_sight_back = ImageIO.read(new File(Constants.FIRST_SIGHT_BACKGROUND)).getScaledInstance(110, 50,  java.awt.Image.SCALE_SMOOTH );
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 
         JPanel gamePanel = new JPanel();
+        gamePanel.setBackground(new Color(0,0,0,0));
         gamePanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-        gamePanel.setLayout(new GridLayout(2, 3, 10, 20));
-        gamePanel.setSize(new Dimension(500, 150));
-        gamePanel.setMaximumSize(new Dimension(500, 150));
+        gamePanel.setLayout(new GridLayout(3, 3, 20, 10));
+        gamePanel.setSize(new Dimension(400, 200));
+        gamePanel.setMaximumSize(new Dimension(400, 200));
 
-        JButton hydraBtn = new JButton("Hydra");
-        JButton firstSightBtn = new JButton("First sight");
+        Image finalHydra_back = hydra_back;
+        JButton hydraBtn = new JButton("Hydra"){
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.drawImage(finalHydra_back, 0, 0, null);
+                setOpaque(true);
+            }
+        };
+        Image finalFirst_sight_back = first_sight_back;
+        JButton firstSightBtn = new JButton("First sight"){
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.drawImage(finalFirst_sight_back, 0, 0, null);
+            }
+        };
+
         JTextField levelsTf = new JTextField("999");
+        levelsTf.setFont(new Font("serif", Font.BOLD, 20));
         JCheckBox untilDeadCb = new JCheckBox("Until dead");
+        untilDeadCb.setBackground(Color.WHITE);
+        untilDeadCb.setSize(30, 30);
+        untilDeadCb.setFont(new Font("serif", Font.BOLD, 16));
+        untilDeadCb.setMinimumSize(new Dimension(30, 30));
         untilDeadCb.setSelected(false);
 
         JTextArea logArea = new JTextArea("");
-        logArea.setMaximumSize(new Dimension(500, 450));
-        logArea.setSize(500, 450);
+        logArea.setMaximumSize(new Dimension(400, 350));
+        logArea.setSize(400, 350);
         logArea.setLineWrap(true);
         logArea.setWrapStyleWord(true);
         logArea.setEnabled(true);
         logArea.setEditable(true);
+        logArea.setFont(new Font("serif", Font.PLAIN, 16));
+
+        JTextArea info1 = new JTextArea("Number of levels to pass");
+        JTextArea info2 = new JTextArea("False: Stoping game on 1 life left; True: Playing until all lifes lost");
+        JTextArea info3 = new JTextArea("Press 1 to RESUME game");
+        JTextArea info4 = new JTextArea("Press 2 to PAUSE game");
+        JTextArea info5 = new JTextArea("Press 3 to QUIT");
+        info1.setLineWrap(true);
+        info1.setWrapStyleWord(true);
+        info1.setEnabled(false);
+        info1.setDisabledTextColor(Color.GREEN);
+        info1.setFont(new Font("serif", Font.BOLD, 10));
+        info2.setLineWrap(true);
+        info2.setWrapStyleWord(true);
+        info2.setEnabled(false);
+        info2.setDisabledTextColor(Color.GREEN);
+        info2.setFont(new Font("serif", Font.BOLD, 10));
+        info3.setLineWrap(true);
+        info3.setWrapStyleWord(true);
+        info3.setEnabled(false);
+        info3.setDisabledTextColor(Color.GREEN);
+        info3.setFont(new Font("serif", Font.BOLD, 12));
+        info4.setLineWrap(true);
+        info4.setWrapStyleWord(true);
+        info4.setEnabled(false);
+        info4.setDisabledTextColor(Color.GREEN);
+        info4.setFont(new Font("serif", Font.BOLD, 12));
+        info5.setLineWrap(true);
+        info5.setWrapStyleWord(true);
+        info5.setEnabled(false);
+        info5.setDisabledTextColor(Color.GREEN);
+        info5.setFont(new Font("serif", Font.BOLD, 12));
+
+        JScrollPane logPanel = new JScrollPane(logArea);
+        logPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        logPanel.setSize(new Dimension(400, 350));
+        logPanel.setMaximumSize(new Dimension(400, 350));
+        logPanel.setEnabled(true);
+        logPanel.setVisible(true);
 
         HydraAction hydraAction = new HydraAction("Hydra", levelsTf, untilDeadCb, logArea);
         FirstSightAction firstSight = new FirstSightAction();
         hydraBtn.addActionListener(hydraAction);
         firstSightBtn.addActionListener(firstSight);
-        JTextArea info1 = new JTextArea("Number of levels to pass\nClick 1 to resume bot\nClick 2 to pause bot");
-        JTextArea info2 = new JTextArea("Should play until death? If not, playing until 1 life left\nClick 3 to quit");
-        info1.setLineWrap(true);
-        info1.setWrapStyleWord(true);
-        info1.setEnabled(false);
-        info1.setDisabledTextColor(Color.black);
-        info2.setLineWrap(true);
-        info2.setWrapStyleWord(true);
-        info2.setEnabled(false);
-        info2.setDisabledTextColor(Color.black);
-
-        JScrollPane logPanel = new JScrollPane(logArea);
-        logPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        logPanel.setSize(new Dimension(500, 450));
-        logPanel.setMaximumSize(new Dimension(500, 450));
 
         gamePanel.add(hydraBtn);
         gamePanel.add(levelsTf);
@@ -146,46 +137,23 @@ public class Main extends JFrame{
         gamePanel.add(firstSightBtn);
         gamePanel.add(info1);
         gamePanel.add(info2);
+        gamePanel.add(info3);
+        gamePanel.add(info4);
+        gamePanel.add(info5);
 
         mainPanel.add(gamePanel);
         mainPanel.add(logPanel);
 
-        add(mainPanel);
         pack();
+        add(mainPanel);
 
         setTitle("AOWE Bot by Tiyanak");
-        setSize(500, 600);
+        setSize(400, 550);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+        setVisible(true);
+
     }
-
-//    private static void startHydra(int levels, boolean untilDead){
-//        Hydra hydra = new Hydra(levels);
-//        hydra.setUntilDead(untilDead);
-//        gkl.addGame(hydra);
-//        GlobalScreen.addNativeKeyListener(gkl);
-//        hydra.play();
-//    }
-//
-//    private static void startHydra(boolean untilDead){
-//        Hydra hydra = new Hydra();
-//        hydra.setUntilDead(untilDead);
-//        gkl.addGame(hydra);
-//        GlobalScreen.addNativeKeyListener(gkl);
-//        hydra.play();
-//    }
-
-//    private static void startFirstSight(){
-//        FirstSight firstSight = new FirstSight();
-//        gkl.addGame(firstSight);
-//        GlobalScreen.addNativeKeyListener(gkl);
-//        firstSight.play();
-//    }
-
-//    private static void quit(){
-//        System.out.println("EXITING, GOODBYE LORD");
-//        System.exit(0);
-//    }
 
 }

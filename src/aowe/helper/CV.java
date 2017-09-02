@@ -21,6 +21,8 @@ public class CV {
         Mat result = new Mat(result_rows, result_cols, CvType.CV_32FC1);
 
         // Do the Matching and Normalize
+        System.out.println(img.toString());
+        System.out.println(template.toString());
         Imgproc.matchTemplate(img, template, result, Imgproc.TM_CCOEFF_NORMED);
         if (normalize){
             Core.normalize(result, result, 0, 1, Core.NORM_MINMAX, -1, new Mat());
