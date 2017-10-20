@@ -18,7 +18,7 @@ public class KeyPresser {
         }
     }
 
-    public void click(int x, int y) {
+    public void moveAndclick(int x, int y) {
         bot.mouseMove(x, y);
         bot.mousePress(InputEvent.BUTTON1_MASK);
         bot.mouseRelease(InputEvent.BUTTON1_MASK);
@@ -36,6 +36,16 @@ public class KeyPresser {
     public void keyPress(int key){
         bot.keyPress(key);
         bot.keyRelease(key);
+    }
+
+    public void move(int x, int y) {
+        bot.mouseMove(x, y);
+    }
+
+    public void click() {
+        bot.mousePress(InputEvent.BUTTON1_MASK);
+        bot.mouseRelease(InputEvent.BUTTON1_MASK);
+        sleep(100);
     }
 
 }

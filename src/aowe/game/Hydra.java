@@ -8,7 +8,6 @@ import aowe.model.Battle;
 import org.opencv.core.Mat;
 import org.opencv.imgcodecs.Imgcodecs;
 
-import javax.swing.*;
 import java.util.*;
 
 /**
@@ -62,21 +61,19 @@ public class Hydra implements Game{
         while (this.levels > 0 || this.untilDead) {
 
             if (!shouldPlay){
-                sleep(1000);
+                sleep(5000);
                 continue;
             }
 
-            this.sleep(200);
-
             Mat screenFrame = ScreenHelper.GetCurrentScreenImage();
 
-            List<Battle> aowe_hero_tavern = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.AOWE_HERO_TAVERN), true, false, false, Constants.MATCHING_PRECISION);
-            if (aowe_hero_tavern.size() > 0){
-                this.isPlaying = false;
-                System.exit(0);
-            }
-
-            if (!this.untilDead) {
+            if (this.untilDead) {
+                List<Battle> aowe_hero_tavern = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.AOWE_HERO_TAVERN), true, false, false, Constants.MATCHING_PRECISION);
+                if (aowe_hero_tavern.size() > 0) {
+                    this.isPlaying = false;
+                    System.exit(0);
+                }
+            } else {
                 List<Battle> hydra_hearts = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.HYDRA_HEART), false, false, false, Constants.MATCHING_HEARTS);
                 hydra_hearts.removeAll(findSameBattles(hydra_hearts));
                 if (hydra_hearts.size() == 1) {
@@ -84,16 +81,17 @@ public class Hydra implements Game{
                 }
             }
 
-            List<Battle> blocked = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.HYDRA_X), true, false, false, Constants.BLOCKED_PRECISION);
-            List<Battle> battleMovie = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.HYDRA_FORWARD_SHADE), true, false, false, Constants.BLOCKED_PRECISION);
+            List<Battle> movie = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.HYDRA_FORWARD_SHADE), true, false, false, Constants.BLOCKED_PRECISION);
+            if (!movie.isEmpty()) {
+                Battle forward = movie.get(0);
+                keyPresser.moveAndclick(forward.getX(), forward.getY());
+                continue;
+            }
 
+            List<Battle> blocked = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.HYDRA_X), true, false, false, Constants.BLOCKED_PRECISION);
             if (blocked.size() > 0) {
                 Battle x = blocked.get(0);
-                keyPresser.click(x.getX(), x.getY());
-                continue;
-            }else if(battleMovie.size() > 0){
-                Battle bm = battleMovie.get(0);
-                keyPresser.click(bm.getX(), bm.getY());
+                keyPresser.moveAndclick(x.getX(), x.getY());
                 continue;
             }
 
@@ -109,8 +107,9 @@ public class Hydra implements Game{
                 battles.removeAll(findSameBattles(battles));
             }
 
-            List<Battle> bossesTemp = CV.matchingHydraTemplates(screenFrame, templates.get(Constants.HYDRA_BOSS), true, false, false, Constants.MATCHING_PRECISION);
             this.levels--;
+
+            List<Battle> bossesTemp = CV.matchingHydraTemplates(screenFrame, templates.get(Constants.HYDRA_BOSS), true, false, false, Constants.MATCHING_PRECISION);
 
             if (bossesTemp.size() > 0) {
                 List<Battle> searchBoss = CV.matchingHydraTemplates(screenFrame, templates.get(Constants.HYDRA_EMPTY), false, true, false, Constants.MATCHING_EMPTY);
@@ -129,7 +128,9 @@ public class Hydra implements Game{
 
     }
 
-    private void bossFight(List<Battle> searchBoss, Battle me, Battle boss, List<Battle> battles) {
+    private boolean bossFight(List<Battle> searchBoss, Battle me, Battle boss, List<Battle> battles) {
+
+        boolean fromFirst = true;
 
         while (true){
 
@@ -141,9 +142,12 @@ public class Hydra implements Game{
                 boss = findClosestBattle(battles, boss);
                 battles.remove(boss);
                 searchBoss.add(boss);
+                fromFirst = false;
             }
 
         }
+
+        return fromFirst;
 
     }
 
@@ -198,14 +202,10 @@ public class Hydra implements Game{
 
     public void fight(Battle battle) {
 
-        keyPresser.click(battle.getX(), battle.getY());
+        keyPresser.moveAndclick(battle.getX(), battle.getY());
 
         pressButton(Constants.HYDRA_FIGHT, false);
-        sleep(500);
-        pressButton(Constants.HYDRA_FORWARD, true);
-        sleep(500);
-        pressButton(Constants.HYDRA_FORWARD_SHADE, true);
-        sleep(200);
+        pressButton(Constants.HYDRA_FORWARD, false);
 
     }
 
@@ -217,13 +217,13 @@ public class Hydra implements Game{
         while (limit > 0) {
 
             Mat screenFrame = ScreenHelper.GetCurrentScreenImage();
-            List<Battle> tempMatching = CV.matchingHydraTemplates(screenFrame, this.templates.get(templateToClick), true, false, false, Constants.BLOCKED_PRECISION);
+            List<Battle> tempMatching = CV.matchingHydraTemplates(screenFrame, this.templates.get(templateToClick), true, false, false, Constants.MATCHING_PRECISION);
             limit--;
 
             if (tempMatching.size() > 0) {
                 tempShowed = true;
-                keyPresser.click(tempMatching.get(0).getX(), tempMatching.get(0).getY());
-            } else if (tempShowed && tempMatching.size() == 0) return;
+                keyPresser.moveAndclick(tempMatching.get(0).getX(), tempMatching.get(0).getY());
+            } else if (tempShowed && tempMatching.isEmpty()) return;
             else continue;
         }
     }

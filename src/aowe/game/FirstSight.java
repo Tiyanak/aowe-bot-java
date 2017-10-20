@@ -71,13 +71,13 @@ public class FirstSight implements Game{
                 continue;
             }
 
-            // click start aowe.game
+            // moveAndclick start aowe.game
             List<Battle> start = CV.matchingHydraTemplates(ScreenHelper.GetCurrentScreenImage(), this.templates.get(Constants.SIGHT_START), true, false, true, Constants.MATCHING_PRECISION);
-            keyPresser.click(start.get(0).getX(), start.get(0).getY());
+            keyPresser.moveAndclick(start.get(0).getX(), start.get(0).getY());
 
             // sleep until 1 second of image revield
             sleep(4000);
-            keyPresser.click(100, 100);
+            keyPresser.moveAndclick(100, 100);
 
             // take init screenshot
             Mat screenFrame = ScreenHelper.GetCurrentScreenImage();
@@ -95,7 +95,7 @@ public class FirstSight implements Game{
             Sight s = results.get(0);
 
             System.out.println((s.getX()+386) + " : " + (s.getY()+326));
-            keyPresser.click(s.getX()+386, s.getY()+326);
+            keyPresser.moveAndclick(s.getX()+386, s.getY()+326);
 
             sleep(1000);
 

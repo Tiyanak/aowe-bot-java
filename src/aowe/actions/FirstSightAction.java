@@ -14,6 +14,10 @@ import java.util.logging.LogManager;
  */
 public class FirstSightAction extends AbstractAction {
 
+    public FirstSightAction(String name) {
+        super(name);
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
 

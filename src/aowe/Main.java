@@ -1,7 +1,9 @@
 package aowe;
 
 import aowe.actions.FirstSightAction;
+import aowe.actions.GemSearchAction;
 import aowe.actions.HydraAction;
+import aowe.actions.MysticTowerAction;
 import aowe.helper.Constants;
 import org.opencv.core.Core;
 
@@ -35,9 +37,13 @@ public class Main extends JFrame{
 
         Image hydra_back = null;
         Image first_sight_back = null;
+        Image mystic_tower_back = null;
+        Image gem_search_back = null;
         try {
             hydra_back = ImageIO.read(new File(Constants.HYDRA_BACKGROUND)).getScaledInstance(110, 50,  java.awt.Image.SCALE_SMOOTH );
             first_sight_back = ImageIO.read(new File(Constants.FIRST_SIGHT_BACKGROUND)).getScaledInstance(110, 50,  java.awt.Image.SCALE_SMOOTH );
+            mystic_tower_back = ImageIO.read(new File(Constants.MYSTIC_TOWER_BACKGROUND)).getScaledInstance(110, 50,  java.awt.Image.SCALE_SMOOTH );
+            gem_search_back = ImageIO.read(new File(Constants.GEM_SEARCH_BACKGROUND)).getScaledInstance(110, 50,  java.awt.Image.SCALE_SMOOTH );
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -48,7 +54,7 @@ public class Main extends JFrame{
         JPanel gamePanel = new JPanel();
         gamePanel.setBackground(new Color(0,0,0,0));
         gamePanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-        gamePanel.setLayout(new GridLayout(3, 3, 20, 10));
+        gamePanel.setLayout(new GridLayout(4, 3, 20, 10));
         gamePanel.setSize(new Dimension(400, 200));
         gamePanel.setMaximumSize(new Dimension(400, 200));
 
@@ -69,6 +75,22 @@ public class Main extends JFrame{
                 g.drawImage(finalFirst_sight_back, 0, 0, null);
             }
         };
+        Image finalMystic_back = mystic_tower_back;
+        JButton mysticTowerBtn = new JButton("Mystic tower"){
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.drawImage(finalMystic_back, 0, 0, null);
+            }
+        };
+        Image finalGemSearch_back = gem_search_back;
+        JButton gemSearchBtn = new JButton("Gem Search"){
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.drawImage(finalGemSearch_back, 0, 0, null);
+            }
+        };
 
         JTextField levelsTf = new JTextField("999");
         levelsTf.setFont(new Font("serif", Font.BOLD, 20));
@@ -79,76 +101,76 @@ public class Main extends JFrame{
         untilDeadCb.setMinimumSize(new Dimension(30, 30));
         untilDeadCb.setSelected(false);
 
-        JTextArea logArea = new JTextArea("");
-        logArea.setMaximumSize(new Dimension(400, 350));
-        logArea.setSize(400, 350);
-        logArea.setLineWrap(true);
-        logArea.setWrapStyleWord(true);
-        logArea.setEnabled(true);
-        logArea.setEditable(true);
-        logArea.setFont(new Font("serif", Font.PLAIN, 16));
-
         JTextArea info1 = new JTextArea("Number of levels to pass");
         JTextArea info2 = new JTextArea("False: Stoping game on 1 life left; True: Playing until all lifes lost");
-        JTextArea info3 = new JTextArea("Press 1 to RESUME game");
-        JTextArea info4 = new JTextArea("Press 2 to PAUSE game");
-        JTextArea info5 = new JTextArea("Press 3 to QUIT");
+        JTextArea info3 = new JTextArea("1 - RESUME");
+        JTextArea info4 = new JTextArea("2 - PAUSE");
+        JTextArea info5 = new JTextArea("3 - QUIT");
+        JTextArea info6 = new JTextArea("");
         info1.setLineWrap(true);
         info1.setWrapStyleWord(true);
         info1.setEnabled(false);
-        info1.setDisabledTextColor(Color.GREEN);
+        info1.setDisabledTextColor(Color.BLACK);
         info1.setFont(new Font("serif", Font.BOLD, 10));
         info2.setLineWrap(true);
         info2.setWrapStyleWord(true);
         info2.setEnabled(false);
-        info2.setDisabledTextColor(Color.GREEN);
+        info2.setDisabledTextColor(Color.BLACK);
         info2.setFont(new Font("serif", Font.BOLD, 10));
         info3.setLineWrap(true);
         info3.setWrapStyleWord(true);
         info3.setEnabled(false);
-        info3.setDisabledTextColor(Color.GREEN);
+        info3.setDisabledTextColor(Color.BLACK);
         info3.setFont(new Font("serif", Font.BOLD, 12));
         info4.setLineWrap(true);
         info4.setWrapStyleWord(true);
         info4.setEnabled(false);
-        info4.setDisabledTextColor(Color.GREEN);
+        info4.setDisabledTextColor(Color.BLACK);
         info4.setFont(new Font("serif", Font.BOLD, 12));
         info5.setLineWrap(true);
         info5.setWrapStyleWord(true);
         info5.setEnabled(false);
-        info5.setDisabledTextColor(Color.GREEN);
+        info5.setDisabledTextColor(Color.BLACK);
         info5.setFont(new Font("serif", Font.BOLD, 12));
+        info6.setLineWrap(true);
+        info6.setWrapStyleWord(true);
+        info6.setEnabled(false);
+        info6.setDisabledTextColor(Color.BLACK);
+        info6.setFont(new Font("serif", Font.BOLD, 12));
 
-        JScrollPane logPanel = new JScrollPane(logArea);
-        logPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        logPanel.setSize(new Dimension(400, 350));
-        logPanel.setMaximumSize(new Dimension(400, 350));
-        logPanel.setEnabled(true);
-        logPanel.setVisible(true);
+        HydraAction hydraAction = new HydraAction("Hydra", levelsTf, untilDeadCb);
+        FirstSightAction firstSightAction = new FirstSightAction("First sight");
+        MysticTowerAction mysticTowerAction = new MysticTowerAction("Mystic Terrain");
+        GemSearchAction gemSearchAction = new GemSearchAction("Gem Search");
 
-        HydraAction hydraAction = new HydraAction("Hydra", levelsTf, untilDeadCb, logArea);
-        FirstSightAction firstSight = new FirstSightAction();
         hydraBtn.addActionListener(hydraAction);
-        firstSightBtn.addActionListener(firstSight);
+        firstSightBtn.addActionListener(firstSightAction);
+        mysticTowerBtn.addActionListener(mysticTowerAction);
+        gemSearchBtn.addActionListener(gemSearchAction);
 
         gamePanel.add(hydraBtn);
         gamePanel.add(levelsTf);
         gamePanel.add(untilDeadCb);
+
         gamePanel.add(firstSightBtn);
         gamePanel.add(info1);
         gamePanel.add(info2);
+
+        gamePanel.add(mysticTowerBtn);
         gamePanel.add(info3);
         gamePanel.add(info4);
+
+        gamePanel.add(gemSearchBtn);
         gamePanel.add(info5);
+        gamePanel.add(info6);
 
         mainPanel.add(gamePanel);
-        mainPanel.add(logPanel);
 
         pack();
         add(mainPanel);
 
         setTitle("AOWE Bot by Tiyanak");
-        setSize(400, 550);
+        setSize(400, 250);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);

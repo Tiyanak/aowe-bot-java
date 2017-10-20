@@ -9,5 +9,6 @@ public interface Game {
     void start();
     boolean isPlaying();
     void setIsPlaying(boolean isPlaying);
+    void play();
 
 }
