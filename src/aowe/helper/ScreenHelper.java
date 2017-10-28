@@ -2,6 +2,7 @@ package aowe.helper;
 
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
+import org.opencv.imgcodecs.Imgcodecs;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,6 +21,7 @@ public class ScreenHelper {
         DataBufferByte dataBuffer = (DataBufferByte) raster.getDataBuffer();
         byte[] data = dataBuffer.getData();
         mat.get(0, 0, data);
+
         return image;
     }
 
@@ -71,6 +73,12 @@ public class ScreenHelper {
         }
         out.put(0, 0, data);
         return out;
+    }
+
+    public static void saveImage(Mat img, String imgName) {
+
+        Imgcodecs.imwrite(Constants.DESKTOP_PATH + imgName + Constants.PNG_EXT, img);
+
     }
 
 }

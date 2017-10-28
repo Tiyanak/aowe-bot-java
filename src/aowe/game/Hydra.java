@@ -95,12 +95,12 @@ public class Hydra implements Game{
                 continue;
             }
 
-            List<Battle> me = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.HYDRA_ME), true, false, true, Constants.MATCHING_PRECISION);
+            List<Battle> me = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.HYDRA_ME), true, true, true, Constants.MATCHING_PRECISION);
             if (me.isEmpty()) {
                 continue;
             }
 
-            List<Battle> battles = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.HYDRA_BATTLE), false, false, false, Constants.MATCHING_PRECISION);
+            List<Battle> battles = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.HYDRA_BATTLE), false, true, false, Constants.MATCHING_PRECISION);
             if (battles.isEmpty()) {
                 continue;
             } else {
@@ -109,7 +109,7 @@ public class Hydra implements Game{
 
             this.levels--;
 
-            List<Battle> bossesTemp = CV.matchingHydraTemplates(screenFrame, templates.get(Constants.HYDRA_BOSS), true, false, false, Constants.MATCHING_PRECISION);
+            List<Battle> bossesTemp = CV.matchingHydraTemplates(screenFrame, templates.get(Constants.HYDRA_BOSS), true, true, false, Constants.MATCHING_PRECISION);
 
             if (bossesTemp.size() > 0) {
                 List<Battle> searchBoss = CV.matchingHydraTemplates(screenFrame, templates.get(Constants.HYDRA_EMPTY), false, true, false, Constants.MATCHING_EMPTY);

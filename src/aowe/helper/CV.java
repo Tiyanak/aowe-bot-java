@@ -21,8 +21,6 @@ public class CV {
         Mat result = new Mat(result_rows, result_cols, CvType.CV_32FC1);
 
         // Do the Matching and Normalize
-        System.out.println(img.toString());
-        System.out.println(template.toString());
         Imgproc.matchTemplate(img, template, result, Imgproc.TM_CCOEFF_NORMED);
         if (normalize){
             Core.normalize(result, result, 0, 1, Core.NORM_MINMAX, -1, new Mat());
@@ -90,7 +88,6 @@ public class CV {
             mmr = Core.minMaxLoc(result);
             matchLoc = mmr.maxLoc;
             if (mmr.maxVal >= Constants.MATCHING_PRECISION) {
-
 
                 sights.add(new Sight((int) matchLoc.x + template.cols() / 2, (int) matchLoc.y + template.rows() / 2,
                         img.submat((int)matchLoc.y, (int)matchLoc.y+template.rows(), (int)matchLoc.x, (int)matchLoc.x+template.cols()).clone(), 0.0));

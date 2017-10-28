@@ -75,9 +75,11 @@ public class GemSearch implements Game {
 
         while (true) {
 
-            for (int i=0; i<300; i++) {
+            for (int i=0; i<600; i++) {
                 keyPresser.click();
             }
+
+            sleep(300);
 
             screenFrame = ScreenHelper.GetCurrentScreenImage();
             List<Battle> gem_full_confirm_list = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.GEM_FULL_CONFIRM), true, false, false, Constants.MATCHING_PRECISION);

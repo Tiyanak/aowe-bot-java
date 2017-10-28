@@ -39,74 +39,94 @@ public class MysticTower implements Game {
         }
     }
 
-
     @Override
     public void play() {
 
         this.isPlaying = true;
-        boolean finished = false;
 
-        while (!finished) {
+        while (true) {
 
             Mat screenFrame = ScreenHelper.GetCurrentScreenImage();
-
-            List<Battle> blocked = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.HYDRA_X), true, false, false, Constants.MATCHING_EMPTY);
-            if (blocked.size() > 0) {
-                System.out.println("blocked");
-                Battle x = blocked.get(0);
-                keyPresser.moveAndclick(x.getX(), x.getY());
-                continue;
-            }
-
-            List<Battle> me = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.TOWER_ME_RIGHT), true, false, false, Constants.MATCHING_PRECISION);
-            me.addAll(CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.TOWER_ME_LEFT), true, false, false, Constants.MATCHING_PRECISION));
-            if (me.isEmpty()) {
-                continue;
-            }
-
-            List<Battle> battles = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.TOWER_BATTLE), false, false, false, Constants.MATCHING_PRECISION);
-            List<Battle> chests = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.TOWER_CHEST_BATTLE), false, false, false, Constants.MATCHING_PRECISION);
-            List<Battle> boss = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.TOWER_BOSS), true, false, false, Constants.MATCHING_PRECISION);
-
-            List<Battle> battles_chests = battles;
-            battles_chests.addAll(chests);
-
-            if (battles_chests.size() > 0) {
-                battles_chests.removeAll(findSameBattles(battles_chests));
-                Battle closestBattle = findClosestBattle(battles_chests, me.get(0));
-                if (chests.contains(closestBattle)) {
-                    openChest(closestBattle);
-                    sleep(500);
-                } else {
-                    fight(closestBattle);
-                    sleep(500);
+            List<Battle> cities = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.TOWER_SMALL_CITY_BURNING), true, true, false, Constants.MATCHING_EMPTY);
+            if (cities.isEmpty()) {
+                System.out.println("no smalls");
+                cities = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.TOWER_BIG_CITY_BURNING), true, true, false, Constants.MATCHING_EMPTY);
+                if (cities.isEmpty()) {
+                    System.out.println("no bigs");
+                    continue;
                 }
-            } else if (boss.size() > 0) {
-                fight(boss.get(0));
-                sleep(500);
-                keyPresser.moveAndclick(100, 100);
-                sleep(500);
+            }
+
+            boolean finished = false;
+            Battle city = cities.get(0);
+            keyPresser.moveAndclick(city.getX(), city.getY());
+            sleep(300);
+
+            medicalCenter();
+
+            while(!finished) {
+
                 screenFrame = ScreenHelper.GetCurrentScreenImage();
-                int counterLimit = 20;
-                while (true) {
-                    List<Battle> win_chests = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.TOWER_FINISH_CHEST), false, false, false, Constants.MATCHING_PRECISION);
-                    if (!win_chests.isEmpty()) {
-                        keyPresser.moveAndclick(win_chests.get(0).getX(), win_chests.get(0).getY());
-                        break;
-                    } else if (counterLimit == 0) {
-                        break;
+
+                List<Battle> blocked = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.HYDRA_X), false, false, false, Constants.MATCHING_EMPTY);
+                if (blocked.size() > 0) {
+                    System.out.println("blocked");
+                    Battle x = blocked.get(0);
+                    keyPresser.moveAndclick(x.getX(), x.getY());
+                    continue;
+                }
+
+                List<Battle> me = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.TOWER_ME_RIGHT), true, false, false, Constants.MATCHING_PRECISION);
+                me.addAll(CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.TOWER_ME_LEFT), true, false, false, Constants.MATCHING_PRECISION));
+                if (!me.isEmpty()) {
+
+                    List<Battle> battles = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.TOWER_BATTLE), false, false, false, Constants.MATCHING_PRECISION);
+                    List<Battle> chests = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.TOWER_CHEST_BATTLE), false, false, false, Constants.MATCHING_PRECISION);
+                    List<Battle> boss = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.TOWER_BOSS), true, false, false, Constants.MATCHING_PRECISION);
+
+                    List<Battle> battles_chests = battles;
+                    battles_chests.addAll(chests);
+
+                    if (battles_chests.size() > 0) {
+                        Battle closestBattle = findClosestBattle(battles_chests, me.get(0));
+                        if (chests.contains(closestBattle)) {
+                            openChest(closestBattle);
+                            sleep(500);
+                        } else {
+                            fight(closestBattle);
+                            sleep(500);
+                        }
+                    } else if (boss.size() > 0) {
+                        handleBoss(boss.get(0));
+                        finished = true;
                     } else {
-                        counterLimit--;
+                        continue;
                     }
                 }
-                finished = true;
-            } else {
-                finished = true;
             }
-
         }
-
     }
+
+    private void medicalCenter() {
+        pressButton(Constants.TOWER_BARRACKS, true);
+        sleep(300);
+        pressButton(Constants.TOWER_MEDICAL, true);
+        sleep(300);
+        pressButton(Constants.TOWER_TREAT, true);
+        pressButton(Constants.HYDRA_X, false);
+    }
+
+    public void handleBoss(Battle boss) {
+        fight(boss);
+        sleep(500);
+
+        keyPresser.click();
+        sleep(1000);
+
+        pressButton(Constants.TOWER_BOSS_CHEST, false);
+        sleep(500);
+    }
+
 
     public void fight(Battle battle) {
 
