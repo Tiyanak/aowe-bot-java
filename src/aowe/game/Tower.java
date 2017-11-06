@@ -28,7 +28,7 @@ public class Tower implements Game {
     public void initTemplates() {
         this.templates = new HashMap<>();
 
-        for (String tower_temp : Constants.TOWER_ASSETS) {
+        for (String tower_temp : Constants.ASSETS) {
             String path = Constants.AOWE_ASSETS + tower_temp + Constants.PNG_EXT;
             try {
                 this.templates.put(tower_temp, Imgcodecs.imread(path));
@@ -60,8 +60,14 @@ public class Tower implements Game {
 
             List<Battle> blocked = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.HYDRA_X), false, false, false, Constants.MATCHING_EMPTY);
             if (blocked.size() > 0) {
-                System.out.println("blocked");
                 Battle x = blocked.get(0);
+                keyPresser.moveAndclick(x.getX(), x.getY());
+                continue;
+            }
+
+            List<Battle> movie_forward = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.HYDRA_FORWARD), false, false, false, Constants.MATCHING_EMPTY);
+            if (movie_forward.size() > 0) {
+                Battle x = movie_forward.get(0);
                 keyPresser.moveAndclick(x.getX(), x.getY());
                 continue;
             }
@@ -83,10 +89,8 @@ public class Tower implements Game {
                     Battle closestBattle = findClosestBattle(battles_chests, me.get(0));
                     if (chests.contains(closestBattle)) {
                         openChest(closestBattle);
-                        sleep(500);
                     } else {
                         fight(closestBattle);
-                        sleep(500);
                     }
                 } else {
                     continue;

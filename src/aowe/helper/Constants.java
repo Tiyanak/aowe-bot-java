@@ -20,24 +20,14 @@ public class Constants {
     public static final double MATCHING_EMPTY = 0.60;
     public static final double MATCHING_HEARTS = 0.9;
 
-    public static final List<String> HYDRA_TEMPLATES = Arrays.asList("hydra_battle", "hydra_boss", "hydra_empty", "hydra_fight",
-            "hydra_lost", "hydra_me", "hydra_x", "hydra_block", "hydra_lost", "hydra_replay", "hydra_forward", "hydra_forward_shade",
-            "aowe_hero_tavern", "hydra_battle_report", "hydra_buff", "hydra_heart", "hydra_empty_troop");
-
-    public static final List<String> MYSTIC_TOWER_TEMPLATES = Arrays.asList("tower_small_city", "tower_big_city", "tower_big_city_burning",
-            "tower_boss", "tower_chest_battle", "tower_small_city_burning", "hydra_forward", "hydra_x", "tower_me_to_right",
-            "tower_me_to_left", "tower_battle", "tower_stage_clear", "tower_boss_chest", "tower_over", "hydra_fight", "gem_full_confirm",
-            "tower_barracks", "tower_medical", "tower_treat");
-
-    public static final List<String> GEM_SEARCH_TEMPLATES = Arrays.asList("gem_1", "synth_btn", "gem_exp_btn", "gem_full_confirm",
-            "red_apple_gem", "select_all_btn", "synth_gem_btn");
-
-    public static final List<String> PARALLEL_SPACE_ASSETS = Arrays.asList("tower_small_city", "tower_big_city", "hydra_x", "hydra_fight",
-            "hydra_forward");
-
-    public static final List<String> TOWER_ASSETS = Arrays.asList("tower_small_city", "tower_big_city", "tower_big_city_burning",
-            "tower_boss", "tower_chest_battle", "tower_small_city_burning", "hydra_forward", "hydra_x", "tower_me_to_right",
-            "tower_me_to_left", "tower_battle", "tower_stage_clear", "tower_boss_chest", "tower_over", "hydra_fight", "gem_full_confirm");
+    public static final List<String> ASSETS = Arrays.asList("hydra_me", "hydra_buff", "hydra_battle", "hydra_boss", "hydra_x",
+            "hydra_block", "hydra_replay", "hydra_fight", "hydra_forward_shade", "hydra_forward", "hydra_battle_report", "hydra_empty",
+            "hydra_heart", "hydra_empty_troop", "events", "limited_events", "arrow_right_events",
+            "hydra_event", "hydra_enter", "aowe_hero_tavern", "sight_hero_highlight", "sight_start", "sight_hero_guess",
+            "tower_me_to_right", "tower_me_to_left", "tower_big_city", "tower_big_city_burning", "tower_boss", "tower_chest_battle",
+            "tower_defeat", "tower_small_city", "tower_small_city_burning", "tower_victory", "tower_battle", "tower_stage_clear",
+            "tower_boss_chest", "tower_over", "tower_barracks", "tower_medical", "tower_treat", "gem_1", "synth_btn",
+            "gem_exp_btn", "gem_full_confirm", "red_apple_gem", "select_all_btn", "synth_gem_btn", "hydra_pay_reset", "hydra_exit");
 
     public static final String HYDRA_ME = "hydra_me";
     public static final String HYDRA_BUFF = "hydra_buff";
@@ -53,6 +43,13 @@ public class Constants {
     public static final String HYDRA_EMPTY = "hydra_empty";
     public static final String HYDRA_HEART = "hydra_heart";
     public static final String HYDRA_EMPTY_TROOP = "hydra_empty_troop";
+    public static final String EVENTS = "events";
+    public static final String LIMITED_EVENTS = "limited_events";
+    public static final String ARROW_RIGHT_EVENTS = "arrow_right_events";
+    public static final String HYDRA_EVENT = "hydra_event";
+    public static final String HYDRA_ENTER = "hydra_enter";
+    public static final String HYDRA_PAY_RESET = "hydra_pay_reset";
+    public static final String HYDRA_EXIT = "hydra_exit";
 
     public static final String AOWE_HERO_TAVERN = "aowe_hero_tavern";
 

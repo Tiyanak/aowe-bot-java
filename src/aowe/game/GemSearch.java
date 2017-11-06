@@ -33,7 +33,7 @@ public class GemSearch implements Game {
     public void initTemplates() {
         this.templates = new HashMap<>();
 
-        for (String gem_temp : Constants.GEM_SEARCH_TEMPLATES) {
+        for (String gem_temp : Constants.ASSETS) {
             String path = Constants.AOWE_ASSETS + gem_temp + Constants.PNG_EXT;
             try {
                 this.templates.put(gem_temp, Imgcodecs.imread(path));

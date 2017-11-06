@@ -5,6 +5,7 @@ import aowe.helper.Constants;
 import aowe.helper.KeyPresser;
 import aowe.helper.ScreenHelper;
 import aowe.model.Battle;
+import javafx.stage.Screen;
 import org.opencv.core.Mat;
 import org.opencv.imgcodecs.Imgcodecs;
 
@@ -15,13 +16,11 @@ import java.util.*;
  */
 public class MysticTower implements Game {
 
-    private boolean shouldPlay;
     private boolean isPlaying;
     private Map<String, Mat> templates;
     private KeyPresser keyPresser;
 
     public MysticTower() {
-        this.shouldPlay = true;
         isPlaying = false;
         this.keyPresser = new KeyPresser();
         initTemplates();
@@ -30,7 +29,7 @@ public class MysticTower implements Game {
     public void initTemplates() {
         this.templates = new HashMap<>();
 
-        for (String mystic_temp : Constants.MYSTIC_TOWER_TEMPLATES) {
+        for (String mystic_temp : Constants.ASSETS) {
             String path = Constants.AOWE_ASSETS + mystic_temp + Constants.PNG_EXT;
             try {
                 this.templates.put(mystic_temp, Imgcodecs.imread(path));
@@ -47,6 +46,12 @@ public class MysticTower implements Game {
         while (true) {
 
             Mat screenFrame = ScreenHelper.GetCurrentScreenImage();
+            List<Battle> mystic_over = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.GEM_FULL_CONFIRM), true, true, false, Constants.MATCHING_EMPTY);
+            if (!mystic_over.isEmpty()) {
+                Battle over = mystic_over.get(0);
+                keyPresser.moveAndclick(over.getX(), over.getY());
+                break;
+            }
             List<Battle> cities = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.TOWER_SMALL_CITY_BURNING), true, true, false, Constants.MATCHING_EMPTY);
             if (cities.isEmpty()) {
                 System.out.println("no smalls");
@@ -108,9 +113,9 @@ public class MysticTower implements Game {
     }
 
     private void medicalCenter() {
-        pressButton(Constants.TOWER_BARRACKS, true);
+        pressButton(Constants.TOWER_BARRACKS, false);
         sleep(300);
-        pressButton(Constants.TOWER_MEDICAL, true);
+        pressButton(Constants.TOWER_MEDICAL, false);
         sleep(300);
         pressButton(Constants.TOWER_TREAT, true);
         pressButton(Constants.HYDRA_X, false);
@@ -130,11 +135,26 @@ public class MysticTower implements Game {
 
     public void fight(Battle battle) {
 
-        keyPresser.moveAndclick(battle.getX(), battle.getY());
 
+        pressUntilFight(battle);
         pressButton(Constants.HYDRA_FIGHT, false);
         pressButton(Constants.HYDRA_FORWARD, false);
 
+    }
+
+    public void pressUntilFight(Battle battle) {
+
+        while(true) {
+            keyPresser.moveAndclick(battle.getX(), battle.getY());
+            Mat screenFrame = ScreenHelper.GetCurrentScreenImage();
+            List<Battle> fight_list = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.HYDRA_FIGHT), true, false, false, Constants.MATCHING_PRECISION);
+            if (fight_list.isEmpty()) {
+                sleep(100);
+                continue;
+            } else {
+                break;
+            }
+        }
     }
 
     public void openChest(Battle chest) {
@@ -147,7 +167,7 @@ public class MysticTower implements Game {
     public void pressButton(String templateToClick, boolean searchOnce) {
 
         boolean tempShowed = searchOnce;
-        int limit = 20;
+        int limit = 10;
 
         while (limit > 0) {
 
@@ -210,10 +230,10 @@ public class MysticTower implements Game {
     }
 
     @Override
-    public void stop() { this.shouldPlay = false;}
+    public void stop() { }
 
     @Override
-    public void start() { this.shouldPlay = true; }
+    public void start() { }
 
     @Override
     public boolean isPlaying() {

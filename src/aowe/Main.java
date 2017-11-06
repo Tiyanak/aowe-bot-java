@@ -120,7 +120,7 @@ public class Main extends JFrame{
         };
         towerBtn.setMinimumSize(new Dimension(110, 80));
 
-        JTextField levelsTf = new JTextField("999");
+        JTextField levelsTf = new JTextField("5");
         levelsTf.setFont(new Font("serif", Font.BOLD, 20));
         JCheckBox untilDeadCb = new JCheckBox("Until dead");
         untilDeadCb.setBackground(Color.WHITE);

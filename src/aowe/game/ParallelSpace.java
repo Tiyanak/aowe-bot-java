@@ -37,7 +37,7 @@ public class ParallelSpace implements Game {
     public void initTemplates() {
         this.templates = new HashMap<>();
 
-        for (String para_temp : Constants.PARALLEL_SPACE_ASSETS) {
+        for (String para_temp : Constants.ASSETS) {
             String path = Constants.AOWE_ASSETS + para_temp + Constants.PNG_EXT;
             try {
                 this.templates.put(para_temp, Imgcodecs.imread(path));
