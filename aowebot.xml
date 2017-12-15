@@ -39,6 +39,7 @@
     <include name="*.egg"/>
     <include name="*.ane"/>
     <include name="*.jar"/>
+    <include name="*.dll"/>
   </patternset>
   <patternset id="compiler.resources">
     <exclude name="**/?*.java"/>

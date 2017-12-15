@@ -112,6 +112,26 @@ public class MysticTower implements Game {
         }
     }
 
+    @Override
+    public void fromLeft() {
+
+    }
+
+    @Override
+    public void fromBottom() {
+
+    }
+
+    @Override
+    public void fromUp() {
+
+    }
+
+    @Override
+    public void fromRight() {
+
+    }
+
     private void medicalCenter() {
         pressButton(Constants.TOWER_BARRACKS, false);
         sleep(300);

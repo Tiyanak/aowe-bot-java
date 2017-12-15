@@ -64,6 +64,8 @@ public class Hydra implements Game {
         hydra_hearts_init.removeAll(findSameBattles(hydra_hearts_init));
         this.hearts = hydra_hearts_init.size();
 
+        System.out.println("Resets left: " + this.numOfResets);
+
         while (this.untilDead || this.numOfResets >= 0) {
 
             if (!shouldPlay) {
@@ -98,6 +100,7 @@ public class Hydra implements Game {
                         keyPresser.moveAndclick(hydra_pay_reset_btn.getX(), hydra_pay_reset_btn.getY());
                         sleep(200);
                         this.numOfResets--;
+                        System.out.println("Resets left: " + this.numOfResets);
                         resetHydra();
                     }
                     this.hearts = hydra_hearts.size();
@@ -146,6 +149,26 @@ public class Hydra implements Game {
             }
 
         }
+
+    }
+
+    @Override
+    public void fromLeft() {
+
+    }
+
+    @Override
+    public void fromBottom() {
+
+    }
+
+    @Override
+    public void fromUp() {
+
+    }
+
+    @Override
+    public void fromRight() {
 
     }
 

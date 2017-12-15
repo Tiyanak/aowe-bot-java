@@ -7,21 +7,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="27f67e40-ff07-4e82-a2ea-00daa285fc6d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/aoweBot_jar/aoweBot.jar" afterPath="$PROJECT_DIR$/out/artifacts/aoweBot_jar/aoweBot.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/aoweBot/aowe/game/GemSearch.class" afterPath="$PROJECT_DIR$/out/production/aoweBot/aowe/game/GemSearch.class" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/aoweBot_jar/aoweBot.jar" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/aoweBot/aowe/game/Hydra.class" afterPath="$PROJECT_DIR$/out/production/aoweBot/aowe/game/Hydra.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/aoweBot/aowe/game/MysticTower.class" afterPath="$PROJECT_DIR$/out/production/aoweBot/aowe/game/MysticTower.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/aoweBot/aowe/game/ParallelSpace.class" afterPath="$PROJECT_DIR$/out/production/aoweBot/aowe/game/ParallelSpace.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/aoweBot/aowe/game/Tower.class" afterPath="$PROJECT_DIR$/out/production/aoweBot/aowe/game/Tower.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/aoweBot/aowe/helper/Constants.class" afterPath="$PROJECT_DIR$/out/production/aoweBot/aowe/helper/Constants.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/aoweBot/aowe/helper/ScreenHelper.class" afterPath="$PROJECT_DIR$/out/production/aoweBot/aowe/helper/ScreenHelper.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/aoweBot_jar.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/aoweBot_jar.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/aowe/Main.java" afterPath="$PROJECT_DIR$/src/aowe/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aoweBot.iml" afterPath="$PROJECT_DIR$/aoweBot.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aowebot.properties" afterPath="$PROJECT_DIR$/aowebot.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aowebot.xml" afterPath="$PROJECT_DIR$/aowebot.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/aoweBot/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/out/production/aoweBot/META-INF/MANIFEST.MF" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/aowe/game/FirstSight.java" afterPath="$PROJECT_DIR$/src/aowe/game/FirstSight.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/aowe/game/Game.java" afterPath="$PROJECT_DIR$/src/aowe/game/Game.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/aowe/game/GemSearch.java" afterPath="$PROJECT_DIR$/src/aowe/game/GemSearch.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/aowe/game/Hydra.java" afterPath="$PROJECT_DIR$/src/aowe/game/Hydra.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/aowe/game/MysticTower.java" afterPath="$PROJECT_DIR$/src/aowe/game/MysticTower.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/aowe/game/ParallelSpace.java" afterPath="$PROJECT_DIR$/src/aowe/game/ParallelSpace.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/aowe/game/Tower.java" afterPath="$PROJECT_DIR$/src/aowe/game/Tower.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/aowe/helper/CV.java" afterPath="$PROJECT_DIR$/src/aowe/helper/CV.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/aowe/helper/Constants.java" afterPath="$PROJECT_DIR$/src/aowe/helper/Constants.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/aowe/helper/GlobalKeyListener.java" afterPath="$PROJECT_DIR$/src/aowe/helper/GlobalKeyListener.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/aowe/helper/ScreenHelper.java" afterPath="$PROJECT_DIR$/src/aowe/helper/ScreenHelper.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -44,38 +53,58 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/aowe/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="122" column="47" selection-start-line="122" selection-start-column="47" selection-end-line="122" selection-end-column="47" />
+            <state relative-caret-position="1654">
+              <caret line="170" column="29" selection-start-line="170" selection-start-column="29" selection-end-line="170" selection-end-column="29" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Hydra.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GlobalKeyListener.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/aowe/helper/GlobalKeyListener.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="616">
+              <caret line="47" column="52" selection-start-line="47" selection-start-column="52" selection-end-line="47" selection-end-column="52" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FirstSight.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/aowe/game/FirstSight.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="268">
+              <caret line="108" column="56" selection-start-line="108" selection-start-column="56" selection-end-line="108" selection-end-column="56" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ScreenHelper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/aowe/helper/ScreenHelper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="466">
+              <caret line="99" column="1" selection-start-line="99" selection-start-column="1" selection-end-line="99" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Hydra.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/aowe/game/Hydra.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-326">
-              <caret line="66" column="52" selection-start-line="66" selection-start-column="52" selection-end-line="66" selection-end-column="52" />
+            <state relative-caret-position="334">
+              <caret line="166" column="0" selection-start-line="166" selection-start-column="0" selection-end-line="166" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HydraAction.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/aowe/actions/HydraAction.java">
+      <file leaf-file-name="Game.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/aowe/game/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="42" column="29" selection-start-line="42" selection-start-column="29" selection-end-line="42" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Tower.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/aowe/game/Tower.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-602">
-              <caret line="91" column="28" selection-start-line="91" selection-start-column="28" selection-end-line="91" selection-end-column="28" />
+            <state relative-caret-position="290">
+              <caret line="14" column="9" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -131,27 +160,30 @@
         <option value="$PROJECT_DIR$/src/model/FirstSight.java" />
         <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/src/aowe/model/Sight.java" />
-        <option value="$PROJECT_DIR$/src/aowe/helper/GlobalKeyListener.java" />
         <option value="$PROJECT_DIR$/src/aowe/model/Battle.java" />
-        <option value="$PROJECT_DIR$/src/aowe/game/Game.java" />
         <option value="$PROJECT_DIR$/src/aowe/actions/HydraAction.java" />
         <option value="$PROJECT_DIR$/src/aowe/actions/MysticTowerAction.java" />
         <option value="$PROJECT_DIR$/src/aowe/actions/GemSearchAction.java" />
         <option value="$PROJECT_DIR$/src/aowe/actions/FirstSightAction.java" />
         <option value="$PROJECT_DIR$/src/aowe/helper/KeyPresser.java" />
-        <option value="$PROJECT_DIR$/src/aowe/game/FirstSight.java" />
-        <option value="$PROJECT_DIR$/src/aowe/helper/ScreenHelper.java" />
         <option value="$PROJECT_DIR$/src/aowe/actions/ParallelSpaceAction.java" />
         <option value="$PROJECT_DIR$/src/aowe/actions/TowerAction.java" />
-        <option value="$PROJECT_DIR$/src/aowe/helper/CV.java" />
         <option value="$PROJECT_DIR$/src/aowe/actions/InfoAction.java" />
+        <option value="$PROJECT_DIR$/src/aowe/Main.java" />
+        <option value="$PROJECT_DIR$/src/aowe/helper/Constants.java" />
+        <option value="$PROJECT_DIR$/aowebot.properties" />
+        <option value="$PROJECT_DIR$/aowebot.xml" />
+        <option value="$PROJECT_DIR$/module_aowebot.xml" />
+        <option value="$PROJECT_DIR$/src/aowe/game/Game.java" />
         <option value="$PROJECT_DIR$/src/aowe/game/GemSearch.java" />
+        <option value="$PROJECT_DIR$/src/aowe/game/Hydra.java" />
         <option value="$PROJECT_DIR$/src/aowe/game/MysticTower.java" />
         <option value="$PROJECT_DIR$/src/aowe/game/ParallelSpace.java" />
-        <option value="$PROJECT_DIR$/src/aowe/helper/Constants.java" />
         <option value="$PROJECT_DIR$/src/aowe/game/Tower.java" />
-        <option value="$PROJECT_DIR$/src/aowe/Main.java" />
-        <option value="$PROJECT_DIR$/src/aowe/game/Hydra.java" />
+        <option value="$PROJECT_DIR$/src/aowe/helper/ScreenHelper.java" />
+        <option value="$PROJECT_DIR$/src/aowe/helper/CV.java" />
+        <option value="$PROJECT_DIR$/src/aowe/helper/GlobalKeyListener.java" />
+        <option value="$PROJECT_DIR$/src/aowe/game/FirstSight.java" />
       </list>
     </option>
   </component>
@@ -162,10 +194,9 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-9" />
-    <option name="y" value="-9" />
-    <option name="width" value="1938" />
-    <option name="height" value="1050" />
+    <option name="x" value="1" />
+    <option name="width" value="1918" />
+    <option name="height" value="1032" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -221,6 +252,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="META-INF" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -286,52 +321,16 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="aoweBot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="aoweBot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="aowe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="actions" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="aoweBot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="aoweBot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="PackagesPane" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../poslovna java/FerVjezbe/Vjezbe06/Zadatak6" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.21666667" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
@@ -343,6 +342,7 @@
     <property name="GenerateAntBuildDialog.outputFileNameProperty" value="aowebot" />
     <property name="GenerateAntBuildDialog.inclineRuntiemClasspath" value="true" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
+    <property name="SearchEverywhereHistoryKey" value="ScreenHelper&#9;FILE&#9;file://C:/Users/Igor Farszky/workspace/aoweBot/src/aowe/helper/ScreenHelper.java" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -938,11 +938,64 @@
       <workItem from="1509821551355" duration="9029000" />
       <workItem from="1509870928831" duration="3774000" />
       <workItem from="1509909378846" duration="4944000" />
+      <workItem from="1509953996836" duration="1211000" />
+      <workItem from="1509984629859" duration="38000" />
+      <workItem from="1509995139618" duration="1657000" />
+      <workItem from="1510046713108" duration="594000" />
+      <workItem from="1510144429012" duration="61000" />
+      <workItem from="1510168770862" duration="1339000" />
+      <workItem from="1510257652489" duration="761000" />
+      <workItem from="1510344684641" duration="14687000" />
+      <workItem from="1510478794339" duration="5126000" />
+      <workItem from="1510561719734" duration="17000" />
+      <workItem from="1510590152279" duration="20000" />
+      <workItem from="1510603073238" duration="3064000" />
+      <workItem from="1510680105037" duration="1337000" />
+      <workItem from="1510777239257" duration="681000" />
+      <workItem from="1510821756679" duration="153000" />
+      <workItem from="1510863471574" duration="1957000" />
+      <workItem from="1510938348416" duration="1790000" />
+      <workItem from="1511003423999" duration="8371000" />
+      <workItem from="1511118897453" duration="5702000" />
+      <workItem from="1511171945248" duration="4111000" />
+      <workItem from="1511265308723" duration="3833000" />
+      <workItem from="1511337378667" duration="1199000" />
+      <workItem from="1511440710318" duration="1182000" />
+      <workItem from="1511515844929" duration="594000" />
+      <workItem from="1511601363057" duration="6276000" />
+      <workItem from="1511772467082" duration="1645000" />
+      <workItem from="1511861651974" duration="2832000" />
+      <workItem from="1511972941939" duration="5115000" />
+      <workItem from="1511984612723" duration="1544000" />
+      <workItem from="1512117786599" duration="2328000" />
+      <workItem from="1512201395427" duration="2568000" />
+      <workItem from="1512242577030" duration="8545000" />
+      <workItem from="1512397124098" duration="1276000" />
+      <workItem from="1512419755917" duration="1187000" />
+      <workItem from="1512458326044" duration="1792000" />
+      <workItem from="1512503098221" duration="1171000" />
+      <workItem from="1512548317069" duration="3960000" />
+      <workItem from="1512633006809" duration="691000" />
+      <workItem from="1512661003421" duration="2375000" />
+      <workItem from="1512674856624" duration="1796000" />
+      <workItem from="1512721850084" duration="594000" />
+      <workItem from="1512759173379" duration="3924000" />
+      <workItem from="1512870792808" duration="2430000" />
+      <workItem from="1512909822062" duration="2400000" />
+      <workItem from="1513009926473" duration="24000" />
+      <workItem from="1513023054277" duration="2295000" />
+      <workItem from="1513103087427" duration="595000" />
+      <workItem from="1513168859184" duration="1427000" />
+      <workItem from="1513182331853" duration="645000" />
+      <workItem from="1513188614448" duration="626000" />
+      <workItem from="1513242111877" duration="742000" />
+      <workItem from="1513274577957" duration="3571000" />
+      <workItem from="1513347645059" duration="11681000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="135492000" />
+    <option name="totallyTimeSpent" value="271032000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -954,22 +1007,22 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
+    <frame x="1" y="0" width="1918" height="1032" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32968238" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32881355" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3283237" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32858709" sideWeight="0.50208336" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3141243" sideWeight="0.49791667" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33448672" sideWeight="0.49791667" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1358754" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13083605" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973147" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1008,14 +1061,8 @@
           <properties />
           <option name="timeStamp" value="40" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/aowe/game/FirstSight.java</url>
-          <line>50</line>
-          <properties />
-          <option name="timeStamp" value="44" />
-        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="48" />
+      <option name="time" value="49" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1024,28 +1071,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/aowe/game/Hydra.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="276" column="30" selection-start-line="276" selection-start-column="30" selection-end-line="276" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/aowe/game/FirstSight.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="411">
-          <caret line="58" column="24" selection-start-line="58" selection-start-column="24" selection-end-line="58" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/aowe/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="45" column="92" selection-start-line="45" selection-start-column="92" selection-end-line="45" selection-end-column="92" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/aowe/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1057,7 +1082,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5830">
           <caret line="276" column="30" selection-start-line="276" selection-start-column="30" selection-end-line="276" selection-end-column="30" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1082,20 +1106,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/aowe/model/Sight.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="117">
-          <caret line="11" column="14" selection-start-line="11" selection-start-column="14" selection-end-line="11" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/aowe/helper/GlobalKeyListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="57" column="53" selection-start-line="57" selection-start-column="53" selection-end-line="57" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/aowe/model/Battle.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
@@ -1106,34 +1116,6 @@
     <entry file="jar://$PROJECT_DIR$/lib/opencv-320.jar!/META-INF/MANIFEST.MF">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/aowebot.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/aowebot.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1968">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/META-INF/MANIFEST.MF">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/module_aowebot.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1359">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
@@ -1157,20 +1139,6 @@
     <entry file="file://$PROJECT_DIR$/src/aowe_assets/tower_victory.PNG" />
     <entry file="file://$PROJECT_DIR$/src/aowe_assets/hydra_block.PNG" />
     <entry file="file://$PROJECT_DIR$/src/aowe_assets/hydra_empty_troop.PNG" />
-    <entry file="file://$PROJECT_DIR$/src/aowe/game/Game.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/lib/opencv-320.jar!/org/opencv/core/Core.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="27" column="31" selection-start-line="27" selection-start-column="31" selection-end-line="27" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/aowe/helper/KeyPresser.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="776">
@@ -1193,13 +1161,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/aowe/actions/FirstSightAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
-          <caret line="42" column="5" selection-start-line="16" selection-start-column="4" selection-end-line="42" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/aowe/actions/GemSearchAction.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="654">
@@ -1217,13 +1178,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/aowe/helper/ScreenHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="776">
-          <caret line="79" column="75" selection-start-line="79" selection-start-column="75" selection-end-line="79" selection-end-column="75" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/aowe_assets/tower_big_city_burning.PNG">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -1233,28 +1187,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
           <caret line="14" column="53" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/aowe/actions/TowerAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="682">
-          <caret line="40" column="13" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/aowe/helper/CV.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="23" column="35" selection-start-line="23" selection-start-column="35" selection-end-line="23" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/aowe/actions/ParallelSpaceAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="704">
-          <caret line="41" column="21" selection-start-line="41" selection-start-column="21" selection-end-line="41" selection-end-column="21" />
         </state>
       </provider>
     </entry>
@@ -1268,82 +1200,203 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/aowe/game/FirstSight.java">
+    <entry file="file://$PROJECT_DIR$/src/aowe/actions/InfoAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1210">
-          <caret line="78" column="20" selection-start-line="78" selection-start-column="20" selection-end-line="78" selection-end-column="20" />
-          <folding />
+        <state relative-caret-position="418">
+          <caret line="21" column="112" selection-start-line="21" selection-start-column="112" selection-end-line="21" selection-end-column="112" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/aowe/actions/HydraAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="42" column="29" selection-start-line="42" selection-start-column="29" selection-end-line="42" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/aowe/actions/ParallelSpaceAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="532">
+          <caret line="41" column="21" selection-start-line="41" selection-start-column="21" selection-end-line="41" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/META-INF/MANIFEST.MF">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aowebot.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1980">
+          <caret line="90" column="47" selection-start-line="90" selection-start-column="47" selection-end-line="90" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/module_aowebot.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="11" column="79" selection-start-line="11" selection-start-column="79" selection-end-line="11" selection-end-column="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aowebot.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="3" column="46" selection-start-line="3" selection-start-column="46" selection-end-line="3" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/opencv-320.jar!/org/opencv/core/Core.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="284">
+          <caret line="27" column="31" selection-start-line="27" selection-start-column="31" selection-end-line="27" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/opencv-320.jar!/org/opencv/imgcodecs/Imgcodecs.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_91/src.zip!/java/lang/Throwable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1274">
+          <caret line="632" column="16" selection-start-line="632" selection-start-column="16" selection-end-line="632" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/aowe/helper/Constants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="88" column="31" selection-start-line="88" selection-start-column="31" selection-end-line="88" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/aowe/actions/FirstSightAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="26" column="34" selection-start-line="26" selection-start-column="34" selection-end-line="26" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/aowe/actions/TowerAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="329">
+          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/aowe/game/GemSearch.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="35" column="47" selection-start-line="35" selection-start-column="47" selection-end-line="35" selection-end-column="47" />
+        <state relative-caret-position="466">
+          <caret line="146" column="8" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/aowe/game/MysticTower.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="31" column="50" selection-start-line="31" selection-start-column="50" selection-end-line="31" selection-end-column="50" />
+        <state relative-caret-position="466">
+          <caret line="126" column="8" selection-start-line="126" selection-start-column="8" selection-end-line="126" selection-end-column="8" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/aowe/game/ParallelSpace.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="39" column="48" selection-start-line="39" selection-start-column="48" selection-end-line="39" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/aowe/actions/InfoAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="21" column="112" selection-start-line="21" selection-start-column="112" selection-end-line="21" selection-end-column="112" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/aowe/helper/Constants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-176">
-          <caret line="29" column="129" selection-start-line="29" selection-start-column="129" selection-end-line="29" selection-end-column="129" />
+        <state relative-caret-position="466">
+          <caret line="119" column="8" selection-start-line="119" selection-start-column="8" selection-end-line="119" selection-end-column="8" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/aowe/game/Tower.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-602">
-          <caret line="91" column="28" selection-start-line="91" selection-start-column="28" selection-end-line="91" selection-end-column="28" />
+        <state relative-caret-position="466">
+          <caret line="154" column="8" selection-start-line="154" selection-start-column="8" selection-end-line="154" selection-end-column="8" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/aowe/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="122" column="47" selection-start-line="122" selection-start-column="47" selection-end-line="122" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/aowe/actions/HydraAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="42" column="29" selection-start-line="42" selection-start-column="29" selection-end-line="42" selection-end-column="29" />
+        <state relative-caret-position="1654">
+          <caret line="170" column="29" selection-start-line="170" selection-start-column="29" selection-end-line="170" selection-end-column="29" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/aowe/game/Hydra.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-326">
-          <caret line="66" column="52" selection-start-line="66" selection-start-column="52" selection-end-line="66" selection-end-column="52" />
+        <state relative-caret-position="334">
+          <caret line="166" column="0" selection-start-line="166" selection-start-column="0" selection-end-line="166" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/aowe/game/Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="14" column="9" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/aowe/helper/ScreenHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="466">
+          <caret line="99" column="1" selection-start-line="99" selection-start-column="1" selection-end-line="99" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_91/src.zip!/java/util/List.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="543" column="6" selection-start-line="543" selection-start-column="6" selection-end-line="543" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/aowe/model/Sight.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="21" column="15" selection-start-line="21" selection-start-column="15" selection-end-line="21" selection-end-column="15" />
+          <folding>
+            <element signature="e#400#401#0" expanded="true" />
+            <element signature="e#424#425#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/aowe/helper/CV.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-424">
+          <caret line="64" column="30" selection-start-line="64" selection-start-column="30" selection-end-line="64" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/aowe/helper/GlobalKeyListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="616">
+          <caret line="47" column="52" selection-start-line="47" selection-start-column="52" selection-end-line="47" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/aowe/game/FirstSight.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="268">
+          <caret line="108" column="56" selection-start-line="108" selection-start-column="56" selection-end-line="108" selection-end-column="56" />
           <folding />
         </state>
       </provider>
@@ -1353,7 +1406,14 @@
     <states>
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
-          <artifact-editor />
+          <artifact-editor>
+            <show-content>
+              <type id="jpa-descriptors" />
+              <type id="library" />
+              <type id="javaee-facet-resources" />
+              <type id="artifact" />
+            </show-content>
+          </artifact-editor>
           <last-edited>aoweBot:jar</last-edited>
           <splitter-proportions>
             <option name="proportions">
@@ -1367,7 +1427,7 @@
       </state>
       <state key="FacetStructureConfigurable.UI">
         <settings>
-          <last-edited>No facets are configured</last-edited>
+          <last-edited>Detection</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -1379,6 +1439,7 @@
       </state>
       <state key="GlobalLibrariesConfigurable.UI">
         <settings>
+          <last-edited>jnativehook-2.1.0</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

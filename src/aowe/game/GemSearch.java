@@ -133,6 +133,26 @@ public class GemSearch implements Game {
     }
 
     @Override
+    public void fromLeft() {
+
+    }
+
+    @Override
+    public void fromBottom() {
+
+    }
+
+    @Override
+    public void fromUp() {
+
+    }
+
+    @Override
+    public void fromRight() {
+
+    }
+
+    @Override
     public void stop() {
         System.out.println("PAUSING FIRST SIGHT");
         this.shouldPlay = false;

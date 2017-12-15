@@ -40,6 +40,26 @@ public class GlobalKeyListener implements NativeKeyListener {
             }
         }
 
+        if (e.getKeyCode() == NativeKeyEvent.VC_LEFT) {
+            System.out.println("LEFT");
+            game.fromLeft();
+        }
+
+        if (e.getKeyCode() == NativeKeyEvent.VC_DOWN) {
+            System.out.println("BOTTOM");
+            game.fromBottom();
+        }
+
+        if (e.getKeyCode() == NativeKeyEvent.VC_RIGHT) {
+            System.out.println("RIGHT");
+            game.fromRight();
+        }
+
+        if (e.getKeyCode() == NativeKeyEvent.VC_UP) {
+            System.out.println("UP");
+            game.fromUp();
+        }
+
         if (e.getKeyCode() == NativeKeyEvent.VC_3){
             System.out.println("EXITING, GOODBYE LORD");
             System.exit(0);

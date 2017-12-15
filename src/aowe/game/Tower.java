@@ -22,17 +22,20 @@ public class Tower implements Game {
     public Tower() {
         isPlaying = false;
         this.keyPresser = new KeyPresser();
+        System.out.println("Tower");
         initTemplates();
     }
 
     public void initTemplates() {
         this.templates = new HashMap<>();
+        System.out.println("init templates");
 
         for (String tower_temp : Constants.ASSETS) {
             String path = Constants.AOWE_ASSETS + tower_temp + Constants.PNG_EXT;
             try {
                 this.templates.put(tower_temp, Imgcodecs.imread(path));
             } catch (Exception e) {
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -42,31 +45,36 @@ public class Tower implements Game {
     public void play() {
 
         this.isPlaying = true;
-        boolean finished = false;
 
-        while (!finished) {
+
+        while (true) {
 
             Mat screenFrame = ScreenHelper.GetCurrentScreenImage();
+            System.out.println(screenFrame.toString());
 
-            List<Battle> mystic_over = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.GEM_FULL_CONFIRM), true, false, false, Constants.MATCHING_EMPTY);
+            List<Battle> mystic_over = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.GEM_FULL_CONFIRM), true, false, false, Constants.MATCHING_PRECISION);
             if (!mystic_over.isEmpty()) {
+                System.out.println("Tower over");
                 break;
             }
 
-            List<Battle> tower_over_list = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.TOWER_OVER), true, false, false, Constants.MATCHING_EMPTY);
+            List<Battle> tower_over_list = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.TOWER_OVER), true, false, false, Constants.MATCHING_PRECISION);
             if (!tower_over_list.isEmpty()) {
+                System.out.println("Tower over");
                 break;
             }
 
             List<Battle> blocked = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.HYDRA_X), false, false, false, Constants.MATCHING_EMPTY);
             if (blocked.size() > 0) {
+                System.out.println("Hydra X");
                 Battle x = blocked.get(0);
                 keyPresser.moveAndclick(x.getX(), x.getY());
                 continue;
             }
 
-            List<Battle> movie_forward = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.HYDRA_FORWARD), false, false, false, Constants.MATCHING_EMPTY);
+            List<Battle> movie_forward = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.HYDRA_FORWARD), false, false, false, Constants.MATCHING_PRECISION);
             if (movie_forward.size() > 0) {
+                System.out.println("Hydra forward");
                 Battle x = movie_forward.get(0);
                 keyPresser.moveAndclick(x.getX(), x.getY());
                 continue;
@@ -75,7 +83,6 @@ public class Tower implements Game {
             List<Battle> me = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.TOWER_ME_RIGHT), true, false, false, Constants.MATCHING_PRECISION);
             me.addAll(CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.TOWER_ME_LEFT), true, false, false, Constants.MATCHING_PRECISION));
             if (!me.isEmpty()) {
-
                 List<Battle> battles = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.TOWER_BATTLE), false, false, false, Constants.MATCHING_PRECISION);
                 List<Battle> chests = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.TOWER_CHEST_BATTLE), false, false, false, Constants.MATCHING_PRECISION);
                 List<Battle> boss = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.TOWER_BOSS), true, false, false, Constants.MATCHING_PRECISION);
@@ -93,12 +100,14 @@ public class Tower implements Game {
                         fight(closestBattle);
                     }
                 } else {
+                    System.out.println("Found nothing");
                     continue;
                 }
 
             } else {
                 List<Battle> big_burning = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.TOWER_BIG_CITY_BURNING), true, false, false, Constants.MATCHING_EMPTY);
                 if (big_burning.size() > 0) {
+                    System.out.println("Burning big city");
                     Battle x = big_burning.get(0);
                     keyPresser.moveAndclick(x.getX(), x.getY());
                     sleep(300);
@@ -110,10 +119,10 @@ public class Tower implements Game {
                         keyPresser.moveAndclick(confirmBtn.getX(), confirmBtn.getY());
                         sleep(200);
                     }
-                    continue;
                 } else {
                     List<Battle> big = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.TOWER_BIG_CITY), true, false, false, Constants.MATCHING_EMPTY);
                     if (big.size() > 0) {
+                        System.out.println("Big city");
                         Battle x = big.get(0);
                         keyPresser.moveAndclick(x.getX(), x.getY());
                         sleep(200);
@@ -125,11 +134,30 @@ public class Tower implements Game {
                             keyPresser.moveAndclick(confirmBtn.getX(), confirmBtn.getY());
                             sleep(200);
                         }
-                        continue;
                     }
                 }
             }
         }
+    }
+
+    @Override
+    public void fromLeft() {
+
+    }
+
+    @Override
+    public void fromBottom() {
+
+    }
+
+    @Override
+    public void fromUp() {
+
+    }
+
+    @Override
+    public void fromRight() {
+
     }
 
     public void handleBoss(Battle boss) {
@@ -163,9 +191,11 @@ public class Tower implements Game {
     public void pressButton(String templateToClick, boolean searchOnce) {
 
         boolean tempShowed = searchOnce;
-        int limit = 20;
+        int limit = 5;
 
         while (limit > 0) {
+
+            sleep(200);
 
             Mat screenFrame = ScreenHelper.GetCurrentScreenImage();
             List<Battle> tempMatching = CV.matchingHydraTemplates(screenFrame, this.templates.get(templateToClick), true, false, false, Constants.BLOCKED_PRECISION);

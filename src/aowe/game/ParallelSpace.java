@@ -105,6 +105,26 @@ public class ParallelSpace implements Game {
 
     }
 
+    @Override
+    public void fromLeft() {
+
+    }
+
+    @Override
+    public void fromBottom() {
+
+    }
+
+    @Override
+    public void fromUp() {
+
+    }
+
+    @Override
+    public void fromRight() {
+
+    }
+
     public List<Battle> findSameBattles(List<Battle> battles) {
 
         List<Battle> sameBattles = new ArrayList<>();
@@ -145,11 +165,11 @@ public class ParallelSpace implements Game {
     public void pressButton(String templateToClick, boolean searchOnce) {
 
         boolean tempShowed = searchOnce;
-        int limit = 20;
+        int limit = 5;
 
         while (limit > 0) {
 
-            sleep(100);
+            sleep(400);
 
             Mat screenFrame = ScreenHelper.GetCurrentScreenImage();
             List<Battle> tempMatching = CV.matchingHydraTemplates(screenFrame, this.templates.get(templateToClick), true, false, false, Constants.MATCHING_PRECISION);

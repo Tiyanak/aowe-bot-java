@@ -2,7 +2,9 @@ package aowe.helper;
 
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
+import org.opencv.core.Size;
 import org.opencv.imgcodecs.Imgcodecs;
+import org.opencv.imgproc.Imgproc;
 
 import javax.swing.*;
 import java.awt.*;
@@ -42,8 +44,22 @@ public class ScreenHelper {
         } catch (AWTException e) {
             e.printStackTrace();
         }
-        BufferedImage screenShot = robot.createScreenCapture(new Rectangle(Toolkit.getDefaultToolkit().getScreenSize()));
-        return img2Mat(screenShot);
+        BufferedImage screenShot = null;
+        if (robot != null) {
+            Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+            screenShot = robot.createScreenCapture(new Rectangle(new Dimension(1920, 1080)));
+        }
+
+        Mat screen = img2Mat(screenShot);
+
+        if (screen.rows() != 1080 && screen.cols() != 1920) {
+            Mat resizedImage = new Mat();
+            Size sz = new Size(1080, 1920);
+            Imgproc.resize(screen, resizedImage, sz);
+            return resizedImage.t();
+        } else {
+            return screen;
+        }
     }
 
     public static Mat img2Mat(BufferedImage in) {

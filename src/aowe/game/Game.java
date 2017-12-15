@@ -10,5 +10,9 @@ public interface Game {
     boolean isPlaying();
     void setIsPlaying(boolean isPlaying);
     void play();
+    void fromLeft();
+    void fromBottom();
+    void fromUp();
+    void fromRight();
 
 }

@@ -1,6 +1,9 @@
 <component name="ArtifactManager">
   <artifact type="jar" build-on-make="true" name="aoweBot:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/aoweBot_jar</output-path>
+    <properties id="ant-preprocessing">
+      <options enabled="true" />
+    </properties>
     <root id="archive" name="aoweBot.jar">
       <element id="module-output" name="aoweBot" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/jnativehook-2.1.0.jar" path-in-jar="/" />

@@ -91,7 +91,6 @@ public class CV {
 
                 sights.add(new Sight((int) matchLoc.x + template.cols() / 2, (int) matchLoc.y + template.rows() / 2,
                         img.submat((int)matchLoc.y, (int)matchLoc.y+template.rows(), (int)matchLoc.x, (int)matchLoc.x+template.cols()).clone(), 0.0));
-
                 if (drawImage) {
                     Imgproc.rectangle(img, matchLoc,
                             new Point(matchLoc.x + template.cols(), matchLoc.y + template.rows()),
