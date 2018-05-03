@@ -50,7 +50,6 @@ public class Tower implements Game {
         while (true) {
 
             Mat screenFrame = ScreenHelper.GetCurrentScreenImage();
-            System.out.println(screenFrame.toString());
 
             List<Battle> mystic_over = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.GEM_FULL_CONFIRM), true, false, false, Constants.MATCHING_PRECISION);
             if (!mystic_over.isEmpty()) {
@@ -83,6 +82,7 @@ public class Tower implements Game {
             List<Battle> me = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.TOWER_ME_RIGHT), true, false, false, Constants.MATCHING_PRECISION);
             me.addAll(CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.TOWER_ME_LEFT), true, false, false, Constants.MATCHING_PRECISION));
             if (!me.isEmpty()) {
+
                 List<Battle> battles = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.TOWER_BATTLE), false, false, false, Constants.MATCHING_PRECISION);
                 List<Battle> chests = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.TOWER_CHEST_BATTLE), false, false, false, Constants.MATCHING_PRECISION);
                 List<Battle> boss = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.TOWER_BOSS), true, false, false, Constants.MATCHING_PRECISION);
@@ -161,14 +161,39 @@ public class Tower implements Game {
     }
 
     public void handleBoss(Battle boss) {
+
         fight(boss);
         sleep(500);
 
-        keyPresser.click();
-        sleep(1000);
+        clickUntilSee(Constants.GOLDEN_STAR, Constants.TOWER_BOSS_CHEST);
+        clickUntilSee(Constants.TOWER_BOSS_CHEST, Constants.UNCHARTED_GOLD_PAY);
+//        clickUntilSee(Constants.TOWER_BOSS_CHEST, Constants.TOWER_BIG_CITY_BURNING);
+        clickUntilSee(Constants.UNCHARTED_GOLD_PAY, Constants.TOWER_BIG_CITY_BURNING);
 
-        pressButton(Constants.TOWER_BOSS_CHEST, false);
-        sleep(500);
+    }
+
+    private void clickUntilSee(String clickAsset, String seeAsset) {
+
+        Mat screen = null;
+
+        while (true) {
+
+            screen = ScreenHelper.GetCurrentScreenImage();
+            List<Battle> click_list = CV.matchingHydraTemplates(screen, templates.get(clickAsset), true, false, false, Constants.MATCHING_PRECISION);
+            if (!click_list.isEmpty()) {
+                Battle click = click_list.get(0);
+                keyPresser.moveAndclick(click.getX(), click.getY());
+                sleep(200);
+            }
+
+            screen = ScreenHelper.GetCurrentScreenImage();
+            List<Battle> see_list = CV.matchingHydraTemplates(screen, templates.get(seeAsset), true, false, false, Constants.MATCHING_PRECISION);
+            if (!see_list.isEmpty()) {
+                break;
+            }
+
+        }
+
     }
 
 

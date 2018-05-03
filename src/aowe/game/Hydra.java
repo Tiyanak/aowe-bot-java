@@ -1,14 +1,14 @@
 package aowe.game;
 
-import aowe.helper.CV;
-import aowe.helper.Constants;
-import aowe.helper.KeyPresser;
-import aowe.helper.ScreenHelper;
-import aowe.model.Battle;
-import org.opencv.core.Mat;
-import org.opencv.imgcodecs.Imgcodecs;
+        import aowe.helper.CV;
+        import aowe.helper.Constants;
+        import aowe.helper.KeyPresser;
+        import aowe.helper.ScreenHelper;
+        import aowe.model.Battle;
+        import org.opencv.core.Mat;
+        import org.opencv.imgcodecs.Imgcodecs;
 
-import java.util.*;
+        import java.util.*;
 
 /**
  * Created by Igor Farszky on 1.7.2017..
@@ -51,8 +51,7 @@ public class Hydra implements Game {
             String path = Constants.AOWE_ASSETS + hydra_temp + Constants.PNG_EXT;
             try {
                 this.templates.put(hydra_temp, Imgcodecs.imread(path));
-            } catch (Exception e) {
-            }
+            } catch (Exception e) {}
         }
     }
 
@@ -68,9 +67,8 @@ public class Hydra implements Game {
 
         while (this.untilDead || this.numOfResets >= 0) {
 
-            if (!shouldPlay) {
-                sleep(5000);
-                continue;
+            if (!this.shouldPlay) {
+                break;
             }
 
             screenFrame = ScreenHelper.GetCurrentScreenImage();
@@ -85,7 +83,7 @@ public class Hydra implements Game {
                 List<Battle> hydra_hearts = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.HYDRA_HEART), false, false, false, Constants.MATCHING_HEARTS);
                 hydra_hearts.removeAll(findSameBattles(hydra_hearts));
                 if (hydra_hearts.size() < this.hearts && hydra_hearts.size() > 0) {
-                    if (numOfResets <= 0) {
+                    if (numOfResets < 0) {
                         System.exit(0);
                     } else {
                         resetHydra();
@@ -94,16 +92,20 @@ public class Hydra implements Game {
                 } else if (hydra_hearts.size() == this.hearts) {
                     //skip
                 } else {
-                    List<Battle> hydra_pay_reset = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.HYDRA_PAY_RESET), true, false, false, Constants.MATCHING_HEARTS);
-                    if (!hydra_pay_reset.isEmpty()) {
-                        Battle hydra_pay_reset_btn = hydra_pay_reset.get(0);
-                        keyPresser.moveAndclick(hydra_pay_reset_btn.getX(), hydra_pay_reset_btn.getY());
-                        sleep(200);
-                        this.numOfResets--;
-                        System.out.println("Resets left: " + this.numOfResets);
-                        resetHydra();
+                    if (numOfResets == 0) {
+                        System.exit(0);
+                    } else {
+                        List<Battle> hydra_pay_reset = CV.matchingHydraTemplates(screenFrame, this.templates.get(Constants.HYDRA_PAY_RESET), true, false, false, Constants.MATCHING_HEARTS);
+                        if (!hydra_pay_reset.isEmpty()) {
+                            Battle hydra_pay_reset_btn = hydra_pay_reset.get(0);
+                            keyPresser.moveAndclick(hydra_pay_reset_btn.getX(), hydra_pay_reset_btn.getY());
+                            sleep(200);
+                            this.numOfResets--;
+                            System.out.println("Resets left: " + this.numOfResets);
+                            resetHydra();
+                        }
+                        this.hearts = hydra_hearts.size();
                     }
-                    this.hearts = hydra_hearts.size();
                 }
             }
 
@@ -153,51 +155,84 @@ public class Hydra implements Game {
     }
 
     @Override
-    public void fromLeft() {
-
-    }
+    public void fromLeft() {}
 
     @Override
-    public void fromBottom() {
-
-    }
+    public void fromBottom() {}
 
     @Override
-    public void fromUp() {
-
-    }
+    public void fromUp() {}
 
     @Override
-    public void fromRight() {
-
-    }
+    public void fromRight() {}
 
     private void resetHydra() {
 
         pressButton(Constants.HYDRA_X, false);
         clickUntilSee(Constants.HYDRA_EXIT, Constants.EVENTS);
+        sleep(500);
         pressButton(Constants.HYDRA_X, false);
+        sleep(500);
         clickUntilSee(Constants.EVENTS, Constants.LIMITED_EVENTS);
+        sleep(500);
         pressButton(Constants.LIMITED_EVENTS, false);
+        sleep(500);
 
         Mat screen = null;
-        for (int i = 0; i < 6; i++) {
-            screen = ScreenHelper.GetCurrentScreenImage();
-            List<Battle> hydra_event = CV.matchingHydraTemplates(screen, templates.get(Constants.HYDRA_EVENT), true, false, false, Constants.MATCHING_PRECISION);
-            if (hydra_event.isEmpty()) {
+
+        for (int j = 0; j < 5; j++) {
+            // go right
+            for (int i = 0; i < 6; i++) {
+
                 screen = ScreenHelper.GetCurrentScreenImage();
-                List<Battle> right_arrows = CV.matchingHydraTemplates(screen, templates.get(Constants.ARROW_RIGHT_EVENTS), true, false, true, Constants.MATCHING_PRECISION);
-                if (!right_arrows.isEmpty()) {
-                    keyPresser.moveAndclick(right_arrows.get(0).getX(), right_arrows.get(0).getY());
-                    sleep(300);
+                List<Battle> hydra_event = CV.matchingHydraTemplates(screen, templates.get(Constants.HYDRA_EVENT), true, false, false, Constants.MATCHING_PRECISION);
+
+                if (hydra_event.isEmpty()) {
+
+                    screen = ScreenHelper.GetCurrentScreenImage();
+                    List<Battle> right_arrows = CV.matchingHydraTemplates(screen, templates.get(Constants.ARROW_RIGHT_EVENTS), true, false, true, Constants.MATCHING_PRECISION);
+
+                    if (!right_arrows.isEmpty()) {
+                        keyPresser.moveAndclick(right_arrows.get(0).getX(), right_arrows.get(0).getY());
+                        sleep(500);
+                    }
+
+                } else {
+
+                    clickUntilSee(Constants.HYDRA_EVENT, Constants.HYDRA_ENTER);
+                    clickUntilSee(Constants.HYDRA_ENTER, Constants.HYDRA_BATTLE);
+                    return;
+
                 }
-            } else {
-                Battle hydra = hydra_event.get(0);
-                clickUntilSee(Constants.HYDRA_EVENT, Constants.HYDRA_ENTER);
+            }
+
+            // go left
+            for (int i = 0; i < 6; i++) {
+
+                screen = ScreenHelper.GetCurrentScreenImage();
+                List<Battle> hydra_event = CV.matchingHydraTemplates(screen, templates.get(Constants.HYDRA_EVENT), true, false, false, Constants.MATCHING_PRECISION);
+
+                if (hydra_event.isEmpty()) {
+
+                    screen = ScreenHelper.GetCurrentScreenImage();
+                    List<Battle> right_arrows = CV.matchingHydraTemplates(screen, templates.get(Constants.ARROW_LEFT_EVENTS), true, false, true, Constants.MATCHING_PRECISION);
+
+                    if (!right_arrows.isEmpty()) {
+                        keyPresser.moveAndclick(right_arrows.get(0).getX(), right_arrows.get(0).getY());
+                        sleep(500);
+                    }
+
+                } else {
+
+                    clickUntilSee(Constants.HYDRA_EVENT, Constants.HYDRA_ENTER);
+                    clickUntilSee(Constants.HYDRA_ENTER, Constants.HYDRA_BATTLE);
+                    return;
+
+                }
             }
         }
 
-        clickUntilSee(Constants.HYDRA_ENTER, Constants.HYDRA_BATTLE);
+
 
     }
 
@@ -333,6 +368,7 @@ public class Hydra implements Game {
     @Override
     public void start() {
         this.shouldPlay = true;
+        this.play();
     }
 
     @Override

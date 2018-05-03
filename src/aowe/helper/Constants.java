@@ -19,12 +19,13 @@ public class Constants {
 
     public static final List<String> ASSETS = Arrays.asList("hydra_me", "hydra_buff", "hydra_battle", "hydra_boss", "hydra_x",
             "hydra_block", "hydra_replay", "hydra_fight", "hydra_forward_shade", "hydra_forward", "hydra_battle_report", "hydra_empty",
-            "hydra_heart", "hydra_empty_troop", "events", "limited_events", "arrow_right_events",
+            "hydra_heart", "hydra_empty_troop", "events", "limited_events", "arrow_right_events", "arrow_left_events",
             "hydra_event", "hydra_enter", "aowe_hero_tavern", "sight_hero_highlight", "sight_start", "sight_hero_guess",
             "tower_me_to_right", "tower_me_to_left", "tower_big_city", "tower_big_city_burning", "tower_boss", "tower_chest_battle",
             "tower_defeat", "tower_small_city", "tower_small_city_burning", "tower_victory", "tower_battle", "tower_stage_clear",
             "tower_boss_chest", "tower_over", "tower_barracks", "tower_medical", "tower_treat", "gem_1", "synth_btn",
-            "gem_exp_btn", "gem_full_confirm", "red_apple_gem", "select_all_btn", "synth_gem_btn", "hydra_pay_reset", "hydra_exit");
+            "gem_exp_btn", "gem_full_confirm", "red_apple_gem", "select_all_btn", "synth_gem_btn", "hydra_pay_reset", "hydra_exit", "golden_star",
+            "uncharted_gold_pay");
 
     public static final String HYDRA_ME = "hydra_me";
     public static final String HYDRA_BUFF = "hydra_buff";
@@ -43,6 +44,7 @@ public class Constants {
     public static final String EVENTS = "events";
     public static final String LIMITED_EVENTS = "limited_events";
     public static final String ARROW_RIGHT_EVENTS = "arrow_right_events";
+    public static final String ARROW_LEFT_EVENTS = "arrow_left_events";
     public static final String HYDRA_EVENT = "hydra_event";
     public static final String HYDRA_ENTER = "hydra_enter";
     public static final String HYDRA_PAY_RESET = "hydra_pay_reset";
@@ -79,6 +81,9 @@ public class Constants {
     public static final String RED_APPLE_GEM = "red_apple_gem";
     public static final String SELECT_ALL_BTN = "select_all_btn";
     public static final String SYNTH_GEM_BTN = "synth_gem_btn";
+
+    public static final String UNCHARTED_GOLD_PAY = "uncharted_gold_pay";
+    public static final String GOLDEN_STAR = "golden_star";
 
     public static final String HYDRA_BACKGROUND = AOWE_ASSETS + "hydra_background" + PNG_EXT;
     public static final String FIRST_SIGHT_BACKGROUND = AOWE_ASSETS + "first_sight_background" + PNG_EXT;

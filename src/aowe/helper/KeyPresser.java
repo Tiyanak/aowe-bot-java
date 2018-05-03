@@ -19,6 +19,13 @@ public class KeyPresser {
     }
 
     public void moveAndclick(int x, int y) {
+        bot.mouseMove(0, 0);
+        int xT = (int)MouseInfo.getPointerInfo().getLocation().getX();
+        int yT = (int)MouseInfo.getPointerInfo().getLocation().getY();
+        System.out.println("My location: " + xT + ":" + yT);
+        x = (int) (0.8 * x);
+        y = (int) (0.8 * y);
+        System.out.println("Click: " + x + ":" + y);
         bot.mouseMove(x, y);
         bot.mousePress(InputEvent.BUTTON1_MASK);
         bot.mouseRelease(InputEvent.BUTTON1_MASK);
